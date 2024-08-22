@@ -50,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body className={poppins.className}>{children}</body>
+      <body className={SpoqaHan.className}>{children}</body>
     </html>
   );
 }
