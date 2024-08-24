@@ -1,4 +1,4 @@
-import ShareIcon from "@/public/icons/icon-share.svg";
+import ShareIcon from "@/public/icons/icon-share-white.svg";
 
 export default function Diary() {
   return (
