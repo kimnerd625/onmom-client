@@ -13,7 +13,7 @@ const StartButton = () => {
     onSwiping: (eventData) => {
       // 스와이프 중인 동안의 위치를 추적합니다.
       setTranslateX(Math.max(0, Math.min(eventData.deltaX, 266)));
-      if (translateX === 266) {
+      if (translateX === 240) {
         router.push("/signin");
       }
     },

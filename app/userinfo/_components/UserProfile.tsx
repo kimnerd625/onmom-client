@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 
 const UserProfile = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("아무개");
+  const [email, setEmail] = useState<string>("whynotworking@naver.com");
 
   useEffect(() => {
     const fetchUserInfo = async () => {
