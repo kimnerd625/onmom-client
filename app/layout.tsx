@@ -3,6 +3,56 @@ import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
+const AppleSDGothicNeo = localFont({
+  src: [
+    {
+      path: "../public/fonts/AppleSDGothicNeoT.ttf",
+      weight: "900",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/AppleSDGothicNeoEB.ttf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/AppleSDGothicNeoB.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/AppleSDGothicNeoSB.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/AppleSDGothicNeoM.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/AppleSDGothicNeoR.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/AppleSDGothicNeoL.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/AppleSDGothicNeoUL.ttf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/AppleSDGothicNeoH.ttf",
+      weight: "100",
+      style: "normal",
+    },
+  ],
+});
+
 const SpoqaHan = localFont({
   src: [
     {
