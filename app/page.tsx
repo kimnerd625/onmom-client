@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SwipeIcon from "@/public/icons/icon-swipe.svg";
+import StartButton from "./_components/StartButton";
 
 export default function Home() {
   return (
@@ -20,6 +21,9 @@ export default function Home() {
           온맘과 함께 가족들과 하나되는 경험 <br />
           시작해보세요!
         </p>
+      </div>
+      <div>
+        <StartButton />
       </div>
       <Link href="/signin" className="w-full px-4">
         <div className="w-full h-[54px] flex flex-row justify-start items-center bg-[#F8F7F7] rounded-[34px] max-w-[343px] border border-[#E5E5E5] p-0.5 relative group">

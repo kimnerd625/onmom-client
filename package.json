@@ -14,7 +14,7 @@
     "next": "14.2.6",
     "react": "^18",
     "react-dom": "^18",
-    "react-swipezor": "^1.0.7",
+    "react-swipeable": "^7.0.1",
     "tailwind-clip-path": "^1.0.0"
   },
   "devDependencies": {
