@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import SwipeIcon from "@/public/icons/icon-swipe.svg";
 
 export default function Home() {
   return (
@@ -19,12 +21,16 @@ export default function Home() {
           시작해보세요!
         </p>
       </div>
-      <div className="w-full mx-4">
-        <div className="rounded-[34px] bg-[#FF7B00] "></div>
-        <div>
-          <h4>시작하기</h4>
+      <Link href="/signin" className="w-full px-4">
+        <div className="w-full h-[54px] flex flex-row justify-start items-center bg-[#F8F7F7] rounded-[34px] max-w-[343px] border border-[#E5E5E5] p-0.5 relative group">
+          <div className="rounded-[34px] bg-[#FF7B00] p-2.5 absolute left-1 transition-transform duration-500 transform group-hover:translate-x-[266px]">
+            <SwipeIcon width={48} height={24} />
+          </div>
+          <div className="flex flex-row justify-start items-center py-4 absolute right-28 transition-transform duration-500 transform group-hover:-translate-x-[60px]">
+            <h4 className="text-base font-bold leading-4">시작하기</h4>
+          </div>
         </div>
-      </div>
+      </Link>
     </main>
   );
 }
