@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
+          main_700: "#FCAE66",
           main_600: "#FF7B00",
           main_500: "#FF6411",
           main_400: "#FF8D21",
@@ -18,7 +19,13 @@ const config: Config = {
           main_100: "#FFCD90",
         },
         album: {
-          main_500: "#FFC13D",
+          first: "#FFC13D",
+          second: "#FFF0CA",
+          third: "#F1F1F1",
+        },
+        text: {
+          main: "#202226",
+          sub: "#838383",
         },
         system: {
           error: "#E02929",
@@ -26,6 +33,7 @@ const config: Config = {
           check: "#D4E2FF",
           modal: "#F2F2F2",
           bg: "#FFFFFF",
+          divider: "#F7F7F7",
         },
         backgroundImage: {
           "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
