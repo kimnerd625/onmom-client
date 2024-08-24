@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import SignInForm from "./_components/SignInForm";
 
 export default function SignInPage() {
   return (
@@ -12,22 +13,8 @@ export default function SignInPage() {
               계정에 로그인하세요!
             </h3>
           </div>
+          <SignInForm />
           <div className="w-full flex flex-col justify-center items-start gap-y-3">
-            <input
-              type="text"
-              id="email"
-              className="h-[46px] w-full rounded-2xl focus:outline-none border border-[#E5E5E5] placeholder:text-[#666666] px-5 py-2.5 text-sm font-bold text-[#636473]"
-              placeholder="이메일"
-            />
-            <input
-              type="text"
-              id="password"
-              className="h-[46px] w-full rounded-2xl focus:outline-none border border-[#E5E5E5] placeholder:text-[#666666] px-5 py-2.5 text-sm font-bold text-[#636473]"
-              placeholder="비밀번호"
-            />
-            <button className="h-[46px] w-full rounded-2xl bg-brand-main_600 text-white font-bold text-base tracking-tight leading-4 px-5 py-2.5">
-              로그인하기
-            </button>
             <Link
               href="signup"
               className="w-full flex flex-row justify-center items-center"

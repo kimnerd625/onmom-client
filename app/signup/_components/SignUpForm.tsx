@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const SignUpForm = () => {
   const [email, setEmail] = useState<string>("");
@@ -9,6 +11,8 @@ const SignUpForm = () => {
   const [birthdate, setBirthdate] = useState<string>("1995-02-10");
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("010-7510-1981");
+
+  const router = useRouter();
 
   const handleSignUpButton = async () => {
     try {
@@ -29,10 +33,12 @@ const SignUpForm = () => {
       if (!response.ok) {
         throw new Error("회원가입에 실패했습니다.");
       }
-
-      console.log("회원가입 성공!");
+      toast.success("회원가입이 성공적으로 이뤄졌습니다!");
+      setTimeout(() => {
+        router.push("/signin");
+      }, 1500);
     } catch (error) {
-      console.error("회원가입 중 오류가 발생했습니다: ", error);
+      toast.error("회원가입에 실패했습니다.");
     }
   };
 
