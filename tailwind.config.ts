@@ -18,7 +18,9 @@ const config: Config = {
           main_100: "#FFCD90",
         },
         album: {
-          main_500: "#FFC13D",
+          first: "#FFC13D",
+          second: "#FFF0CA",
+          third: "#F1F1F1",
         },
         system: {
           error: "#E02929",
