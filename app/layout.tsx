@@ -100,7 +100,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body className={SpoqaHan.className}>{children}</body>
+      <body className={AppleSDGothicNeo.className}>{children}</body>
     </html>
   );
 }
