@@ -35,6 +35,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwind-clip-path")],
+  plugins: [require("")],
 };
 export default config;
