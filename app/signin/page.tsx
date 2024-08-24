@@ -16,16 +16,16 @@ export default function SignInPage() {
             <input
               type="text"
               id="email"
-              className="w-full rounded-2xl focus:outline-none border border-[#E5E5E5] placeholder:text-[#666666] px-5 py-2.5 text-sm font-bold text-[#636473]"
+              className="h-[46px] w-full rounded-2xl focus:outline-none border border-[#E5E5E5] placeholder:text-[#666666] px-5 py-2.5 text-sm font-bold text-[#636473]"
               placeholder="이메일"
             />
             <input
               type="text"
               id="password"
-              className="w-full rounded-2xl focus:outline-none border border-[#E5E5E5] placeholder:text-[#666666] px-5 py-2.5 text-sm font-bold text-[#636473]"
+              className="h-[46px] w-full rounded-2xl focus:outline-none border border-[#E5E5E5] placeholder:text-[#666666] px-5 py-2.5 text-sm font-bold text-[#636473]"
               placeholder="비밀번호"
             />
-            <button className="w-full rounded-2xl bg-[#FF7B00] text-white font-bold text-base tracking-tight leading-4 px-5 py-2.5">
+            <button className="h-[46px] w-full rounded-2xl bg-brand-main_600 text-white font-bold text-base tracking-tight leading-4 px-5 py-2.5">
               로그인하기
             </button>
             <Link
