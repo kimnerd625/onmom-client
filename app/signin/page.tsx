@@ -29,11 +29,12 @@ export default function SignInPage() {
               로그인하기
             </button>
             <Link
-              href="findpw"
+              href="signup"
               className="w-full flex flex-row justify-center items-center"
             >
               <span className="text-sm text-[#636473] font-bold tracking-tight leading-4">
-                비밀번호를 잊으셨나요?
+                계정이 없으신가요?{" "}
+                <span className="text-brand-main_700">회원가입하러 가기</span>
               </span>
             </Link>
           </div>

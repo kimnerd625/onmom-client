@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
+          main_700: "#FCAE66",
           main_600: "#FF7B00",
           main_500: "#FF6411",
           main_400: "#FF8D21",
