@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const AppleSDGothicNeo = localFont({
   src: [
@@ -100,7 +101,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body className={AppleSDGothicNeo.className}>{children}</body>
+      <body className={AppleSDGothicNeo.className}>
+        <Toaster position="top-center" richColors />
+        {children}
+      </body>
     </html>
   );
 }
