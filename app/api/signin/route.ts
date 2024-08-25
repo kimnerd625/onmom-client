@@ -11,14 +11,13 @@ export async function POST(request: Request) {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
+      credentials: "include", // 쿠키를 포함하여 요청
       body: JSON.stringify({
         email,
         password,
       }),
     });
 
-    // 백엔드에서 반환된 응답 데이터를 모두 읽음
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -26,11 +25,20 @@ export async function POST(request: Request) {
       return NextResponse.json(responseData, { status: response.status });
     }
 
-    // 성공한 경우에도 백엔드에서 보낸 응답 데이터를 그대로 클라이언트로 전송
-    return NextResponse.json(responseData, { status: 200 });
+    // 백엔드에서 받은 Set-Cookie 헤더를 추출
+    const setCookieHeader = response.headers.get("set-cookie");
+
+    const nextResponse = NextResponse.json(responseData, { status: 200 });
+
+    if (setCookieHeader) {
+      // Set-Cookie 헤더를 클라이언트에게 전달
+      nextResponse.headers.set("Set-Cookie", setCookieHeader);
+    }
+
+    return nextResponse;
   } catch (error: any) {
     return NextResponse.json(
-      { error: "회원가입 중 오류가 발생했습니다: " + error.message },
+      { error: "로그인 중 오류가 발생했습니다: " + error.message },
       { status: 500 }
     );
   }
