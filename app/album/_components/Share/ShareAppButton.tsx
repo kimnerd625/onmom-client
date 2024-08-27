@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import type { AppList } from "../Types/AppList";
+import type { AppList } from "../../Types/AppList";
 
 export default function ShareAppButton({ imageUrl, appName }: AppList) {
   return (

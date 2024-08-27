@@ -19,7 +19,7 @@ export default function DiaryCard({ imageUrl, data }: DiaryData) {
         <Image
           src={imageUrl}
           alt="그림일기 이미지"
-          layout="fill"
+          fill
           className="object-fill"
         ></Image>
       </div>
