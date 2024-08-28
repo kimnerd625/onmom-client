@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        yoonchildfundDaeHan: ["YoonchildfundDaeHan", "sans-serif"],
+        yoonchildfundManSeh: ["YoonchildfundManSeh", "sans-serif"],
+        yoonchildfundMinGuk: ["YoonchildfundMinGuk", "sans-serif"],
+      },
       colors: {
         brand: {
           main_700: "#FCAE66",
