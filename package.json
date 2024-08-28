@@ -12,6 +12,7 @@
     "@deepgram/sdk": "^3.5.1",
     "@svgr/webpack": "^8.1.0",
     "next": "14.2.6",
+    "p5": "^1.10.0",
     "react": "^18",
     "react-dom": "^18",
     "react-swipeable": "^7.0.1",
