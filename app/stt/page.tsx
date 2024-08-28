@@ -23,7 +23,7 @@ const SpeechToTextPage: React.FC = () => {
       // 5초 후에 녹음을 자동으로 중지
       setTimeout(() => {
         handleStopRecording();
-      }, 10000);
+      }, 5000);
     };
     window.speechSynthesis.speak(tts);
   }, []);
