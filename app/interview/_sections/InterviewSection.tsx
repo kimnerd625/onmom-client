@@ -89,17 +89,18 @@ export default function InterviewSection() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 relative">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#f7f7f7] relative">
       <VisualizerCanvas
+        imageUrl="/images/logo-circle.png"
         isRecording={isRecording}
         analyser={analyserRef.current}
       />
+      <QuestionDisplay currentQuestion={currentQuestion} />
       <ControlButton
         isRecording={isRecording}
         onClick={isRecording ? handleStopRecording : handleStartRecording}
       />
       <AudioPlayer audioUrl={audioUrl} />
-      <QuestionDisplay currentQuestion={currentQuestion} />
     </div>
   );
 }
