@@ -8,9 +8,10 @@ interface DeepGramMessage {
   is_final: boolean;
 }
 
+//
 let mediaRecorder: MediaRecorder | null = null;
 
-// 오디오 허용
+// getAudioAllow : 브라우저 상 오디오 허용
 export const getAudioAllow = async (): Promise<MediaRecorder | null> => {
   try {
     const mediaStream = await window.navigator.mediaDevices.getUserMedia({
@@ -24,10 +25,10 @@ export const getAudioAllow = async (): Promise<MediaRecorder | null> => {
   }
 };
 
-// 웹 소켓 - 말하기 핸들링
+// handleSpeak : 웹 소켓 - 말하기 핸들링
 export const handleSpeak = async (
   setTranscript: (transcript: string) => void,
-  maxTranscriptLength: number = 100 // 한 번에 인식할 최대 문장 길이 (기본값: 100자)
+  maxTranscriptLength: number = 100 // maxTranscriptLength : 한 번에 인식할 최대 문장 길이, 100자
 ): Promise<void> => {
   if (mediaRecorder) {
     const socket = new WebSocket(
@@ -79,14 +80,14 @@ export const handleSpeak = async (
   }
 };
 
-// 녹음 중지 함수 추가
+// stopRecording : 녹음 중지
 export const stopRecording = (): void => {
   if (mediaRecorder && mediaRecorder.state !== "inactive") {
     mediaRecorder.stop();
   }
 };
 
-// DeepGram AI 말하기 함수
+// handleGetAudio : DeepGram AI 말하기
 export const handleGetAudio = async (
   setTranscript: (transcript: string) => void,
   maxTranscriptLength: number = 100
