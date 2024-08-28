@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { startRecording } from "../_utils/startRecording";
 import { stopRecording } from "../_utils/stopRecording";
 import { playQuestion } from "../_utils/playQuestion";
@@ -20,33 +20,6 @@ export default function InterviewSection() {
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
 
-  // useCallback을 사용하여 startRecording과 stopRecording의 참조를 안정화
-  const handleStartRecording = useCallback(() => {
-    startRecording(
-      setIsRecording,
-      setAudioUrl,
-      mediaRecorderRef,
-      audioChunksRef,
-      audioContextRef,
-      analyserRef,
-      (index) =>
-        playQuestion(index, setCurrentQuestionIndex, setCurrentQuestion, () =>
-          stopRecording(setIsRecording, mediaRecorderRef)
-        )
-    );
-  }, [
-    setIsRecording,
-    setAudioUrl,
-    mediaRecorderRef,
-    audioChunksRef,
-    audioContextRef,
-    analyserRef,
-  ]);
-
-  const handleStopRecording = useCallback(() => {
-    stopRecording(setIsRecording, mediaRecorderRef);
-  }, [setIsRecording, mediaRecorderRef]);
-
   useEffect(() => {
     if (isRecording) {
       const audioContext = new window.AudioContext();
@@ -59,13 +32,6 @@ export default function InterviewSection() {
     }
   }, [isRecording]);
 
-  useEffect(() => {
-    // 자동으로 녹음을 시작하는 로직
-    if (!isRecording) {
-      handleStartRecording();
-    }
-  }, [handleStartRecording, isRecording]);
-
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-screen bg-[#f7f7f7]">
       <VisualizerCanvas
@@ -74,11 +40,29 @@ export default function InterviewSection() {
         analyser={analyserRef.current}
       />
       <QuestionDisplay currentQuestion={currentQuestion} />
-      {/* 아래 버튼을 사용하지 않더라도 녹음이 자동으로 시작됨 */}
-      {/* <ControlButton
+      <ControlButton
         isRecording={isRecording}
-        onClick={isRecording ? handleStopRecording : handleStartRecording}
-      /> */}
+        onClick={
+          isRecording
+            ? () => stopRecording(setIsRecording, mediaRecorderRef)
+            : () =>
+                startRecording(
+                  setIsRecording,
+                  setAudioUrl,
+                  mediaRecorderRef,
+                  audioChunksRef,
+                  audioContextRef,
+                  analyserRef,
+                  (index) =>
+                    playQuestion(
+                      index,
+                      setCurrentQuestionIndex,
+                      setCurrentQuestion,
+                      () => stopRecording(setIsRecording, mediaRecorderRef)
+                    )
+                )
+        }
+      />
       <AudioPlayer audioUrl={audioUrl} />
     </div>
   );

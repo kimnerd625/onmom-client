@@ -25,6 +25,11 @@ export default function Home() {
       <div className="w-full px-4">
         <StartButton />
       </div>
+      <div>
+        <h4>
+          오늘의 복용 스케줄
+        </h4>
+      </div>
     </main>
   );
 }
