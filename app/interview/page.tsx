@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { questions } from "./data/interview-questions";
 
-const VoiceRecorderWithTTS: React.FC = () => {
+export default function InterviewPage() {
   const [isRecording, setIsRecording] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -147,6 +147,4 @@ const VoiceRecorderWithTTS: React.FC = () => {
       )}
     </div>
   );
-};
-
-export default VoiceRecorderWithTTS;
+}
