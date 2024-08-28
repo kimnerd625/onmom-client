@@ -37,7 +37,7 @@ export const startRecording = async (
     // Blob을 FormData에 추가하여 백엔드로 전송합니다.
     const formData = new FormData();
     formData.append("file", audioBlob, "recording.mp3"); // "recording.mp3"는 전송할 파일의 이름입니다.
-    formData.append("groupId", "2");
+    formData.append("groupId", "456");
 
     try {
       const response = await fetch("/api/uploadInterview", {

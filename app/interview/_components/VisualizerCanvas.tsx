@@ -84,7 +84,9 @@ const VisualizerCanvas = ({
   }, [isRecording, analyser, imageUrl]);
 
   return (
-    <canvas ref={canvasRef} width={400} height={400} className="z-0"></canvas>
+    <div className="relative w-full flex flex-col justify-center items-center">
+      <canvas ref={canvasRef} width={400} height={400} className="z-0"></canvas>
+    </div>
   );
 };
 
