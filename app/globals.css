@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "YoonchildfundDaeHan";
+  src: url("/fonts/YoonChildfundkoreaDaeHan.ttf");
+}
+
+@font-face {
+  font-family: "YoonchildfundManSeh";
+  src: url("/fonts/YoonChildfundkoreaManSeh.ttf");
+}
+
+@font-face {
+  font-family: "YoonchildfundMinGuk";
+  src: url("/fonts/YoonChildfundkoreaMinGuk.ttf");
+}

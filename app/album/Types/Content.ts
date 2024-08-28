@@ -1,4 +1,4 @@
-export default interface Content {
+export interface Content {
   keyWord?: string;
   title?: string;
   contents?: string;
