@@ -11,7 +11,7 @@ export default function AlbumPage() {
   const [isOpenShare, setIsOpenShare] = useState<boolean>(true);
 
   return (
-    <div className="relative flex items-center justify-start w-[340px] h-[812px] mr-1 overflow-hidden">
+    <div className="relative flex items-center justify-start w-[375px] h-[812px] mr-1 overflow-hidden">
       <Diary isOpenShare={isOpenShare} setIsOpenShare={setIsOpenShare} />
       {!isOpenShare && <Dimmed />}
       <Share isOpenShare={isOpenShare} setIsOpenShare={setIsOpenShare} />
