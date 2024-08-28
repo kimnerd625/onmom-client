@@ -16,7 +16,7 @@ const PillCard = ({ pillName, frequency }: PillCardProps) => {
           <Pill1 />
         </div>
         <div className="flex flex-col justify-center items-start">
-          <h5>{pillName}</h5>
+          <h5 className="font-bold">{pillName}</h5>
           <span>{frequency}</span>
         </div>
       </div>
