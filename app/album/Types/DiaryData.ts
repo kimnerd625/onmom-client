@@ -1,8 +1,16 @@
 export interface DiaryData {
+  title: string;
+  createdAt: string;
+  diaryEntryId: number;
+  textContent: string;
   imageUrl: string;
-  data: {
-    title: string;
-    date: string; //Date 객체를 이용할 수도 있음
-    contents: string;
-  };
+  audioUrl: string;
+  dailyAnswers: [
+    {
+      id: number;
+      questionText: string;
+      answerText: string;
+      createdAt: string;
+    }
+  ];
 }
