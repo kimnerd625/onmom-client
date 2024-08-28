@@ -3,7 +3,6 @@ import React from "react";
 interface ControlButtonProps {
   isRecording: boolean;
   onClick: () => void;
-  ref;
 }
 
 const ControlButton = ({ isRecording, onClick }: ControlButtonProps) => {
