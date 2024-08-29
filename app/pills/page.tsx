@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useState } from "react";
 import PillCard from "./_components/PillCard";
 import Title from "./_sections/Title";
+import BottomTabNavigationBar from "../_components/BottomTabNavigationBar";
 
 interface PillCardProps {
   pillName: string;
@@ -93,6 +94,7 @@ export default function PillsPage() {
           </div>
         ))}
       </section>
+      <BottomTabNavigationBar />
     </main>
   );
 }

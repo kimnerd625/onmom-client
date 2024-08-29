@@ -1,5 +1,4 @@
-import { questions } from "../data/interview-questions";
-import { stopRecording } from "./stopRecording";
+import { selectedQuestions } from "./randomizeQuestion";
 
 export const playQuestion = async (
   index: number,
@@ -7,12 +6,12 @@ export const playQuestion = async (
   setCurrentQuestion: React.Dispatch<React.SetStateAction<string | null>>,
   handleStopRecording: () => void
 ) => {
-  if (index >= questions.length) {
+  if (index >= selectedQuestions.length) {
     handleStopRecording();
     return;
   }
 
-  const text = questions[index];
+  const text = selectedQuestions[index];
   setCurrentQuestionIndex(index);
   setCurrentQuestion(text);
 
