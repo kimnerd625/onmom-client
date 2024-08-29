@@ -94,7 +94,7 @@ export default function PillsPage() {
           </div>
         ))}
       </section>
-      <BottomTabNavigationBar currentSelected="pills" />
+      <BottomTabNavigationBar />
     </main>
   );
 }
