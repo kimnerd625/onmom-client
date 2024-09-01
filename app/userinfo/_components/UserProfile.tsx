@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { getLoginUser } from "@/app/_utils/loginUserInfo";
 
 const UserProfile = () => {
   const [name, setName] = useState<string>("아무개");
@@ -8,23 +9,27 @@ const UserProfile = () => {
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      try {
-        const response = await fetch("/api/getUserInfo", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+      const loginDataString = getLoginUser();
+      if (loginDataString) {
+        const userId = JSON.parse(loginDataString).userId;
+        try {
+          const response = await fetch(`/api/getUserInfo?userId=${userId}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
-        if (!response.ok) {
-          throw new Error("사용자 정보를 가져오는 데 실패했습니다.");
+          if (!response.ok) {
+            throw new Error("사용자 정보를 가져오는 데 실패했습니다.");
+          }
+
+          const data = await response.json();
+          setName(data.name);
+          setEmail(data.email);
+        } catch (error) {
+          console.error("사용자 정보 로드 중 오류 발생:", error);
         }
-
-        const data = await response.json();
-        setName(data.name);
-        setEmail(data.email);
-      } catch (error) {
-        console.error("사용자 정보 로드 중 오류 발생:", error);
       }
     };
 
