@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { setLoginUser } from "@/app/_utils/loginUserInfo";
 
 const SignInForm = () => {
   const [email, setEmail] = useState<string>();
@@ -25,6 +26,10 @@ const SignInForm = () => {
       if (!response.ok) {
         throw new Error("로그인에 실패했습니다.");
       }
+
+      const userData = await response.json();
+      setLoginUser(userData);
+
       toast.success("로그인이 성공적으로 이뤄졌습니다!");
       setTimeout(() => {
         router.push("/userinfo");
