@@ -99,7 +99,7 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
 
       <button
         type="submit"
-        className="w-full py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
+        className="w-full py-2 bg-[#FF6411] text-white font-semibold rounded-md hover:bg-[#ff5900]"
       >
         등록하기
       </button>
