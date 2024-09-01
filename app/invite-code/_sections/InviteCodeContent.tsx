@@ -6,19 +6,17 @@ import CopyIcon from "@/public/icons/copy-fill.svg";
 import { getGroupId } from "@/app/_utils/groupId";
 import Spinner from "@/app/_components/Spinner";
 
-const InviteCodeContent = () => {
+interface InviteCodeContentProps {
+  groupId: string;
+}
+
+const InviteCodeContent = ({ groupId }: InviteCodeContentProps) => {
   const [inviteCode, setInviteCode] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const groupId = getGroupId();
-
     const getInviteCode = async () => {
-      if (!groupId) {
-        toast.error("그룹 ID를 찾을 수 없습니다.");
-        setIsLoading(false);
-        return;
-      }
+      if (!groupId) return; // groupId가 없으면 실행하지 않음
 
       try {
         const response = await fetch("/api/createInviteCode", {
@@ -30,9 +28,11 @@ const InviteCodeContent = () => {
             groupId,
           }),
         });
+
         if (!response.ok) {
           throw new Error("초대코드 생성에 실패했습니다.");
         }
+
         const data = await response.json();
         setInviteCode(data.message);
       } catch (error) {
@@ -41,8 +41,11 @@ const InviteCodeContent = () => {
         setIsLoading(false);
       }
     };
-    getInviteCode();
-  }, []);
+
+    if (groupId) {
+      getInviteCode();
+    }
+  }, [groupId]); // groupId가 변경될 때만 실행
 
   const handleCopyCode = () => {
     navigator.clipboard

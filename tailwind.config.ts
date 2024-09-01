@@ -34,6 +34,7 @@ const config: Config = {
           sub: "#838383",
         },
         system: {
+          critical: "#EA3434",
           error: "#E02929",
           safety: "#5CBAFF",
           check: "#D4E2FF",
