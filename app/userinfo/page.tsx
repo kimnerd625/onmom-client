@@ -5,6 +5,8 @@ import NotificationIcon from "@/public/icons/icon-notification.svg";
 import FeedbackIcon from "@/public/icons/icon-feedback.svg";
 import UserIcon from "@/public/icons/icon-user.svg";
 import UserSettingIcon from "@/public/icons/icon-user-setting.svg";
+import LogoutIcon from "@/public/icons/icon-logout.svg";
+import TrashIcon from "@/public/icons/icon-trash.svg";
 
 export default function UserInfoPage() {
   return (
@@ -33,6 +35,18 @@ export default function UserInfoPage() {
         />
       </section>
       <div className="w-full min-h-1 bg-system-divider" />
+      <section className="px-7 py-5 w-full flex flex-col justify-center items-start gap-y-3">
+        <MenuCard
+          mainText="로그아웃"
+          subText="계정을 로그아웃합니다."
+          Icon={LogoutIcon}
+        />
+        <MenuCard
+          mainText="회원탈퇴"
+          subText="계정을 영구적으로 삭제합니다."
+          Icon={TrashIcon}
+        />
+      </section>
     </main>
   );
 }
