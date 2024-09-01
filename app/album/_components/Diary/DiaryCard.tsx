@@ -6,17 +6,17 @@ import type { DiaryData } from "../../Types/DiaryData";
 
 type DiaryCardData = Pick<
   DiaryData,
-  "title" | "createdAt" | "imageUrl" | "textContent"
+  "title" | "createdAt" | "imageUrl" | "summaryContent"
 >;
 
 export default function DiaryCard({
   title,
   createdAt,
   imageUrl,
-  textContent,
+  summaryContent,
 }: DiaryCardData) {
   return (
-    <section className="relative w-[270px] h-[380px] bg-white p-2 font-yoonchildfundDaeHan">
+    <div className="relative w-[270px] h-[380px] p-2 bg-white font-yoonchildfundDaeHan">
       <div className="top-[-12px] right-[-10px] absolute">
         <Frame />
       </div>
@@ -29,14 +29,17 @@ export default function DiaryCard({
         <Image
           src={imageUrl}
           alt="그림일기 이미지"
-          fill
+          width={254}
+          height={200}
           className="object-fill"
+          crossOrigin="anonymous"
+          style={{ width: 254, height: 200 }}
         ></Image>
       </div>
 
       <div className="relative flex flex-col mt-1">
-        <div className="text-xs leading-[26px]">{textContent}</div>
+        <div className="text-xs leading-[26px]">{summaryContent}</div>
       </div>
-    </section>
+    </div>
   );
 }
