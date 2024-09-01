@@ -3,6 +3,9 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
+import { getLoginUser } from "../_utils/loginUserInfo";
+import { useRouter } from "next/navigation";
+import { setGroupId } from "../_utils/groupId";
 
 export default function Group() {
   const [image, setImage] = useState<File | null>(null);
@@ -12,6 +15,7 @@ export default function Group() {
     null
   );
 
+  const router = useRouter();
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -60,33 +64,45 @@ export default function Group() {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("groupName", groupName);
-    formData.append("role", selectedRole);
-    if (image) {
-      formData.append("image", image);
-    }
+    const loginUser = getLoginUser();
+    const userId = JSON.parse(loginUser!).userId;
 
-    try {
-      const response = await fetch("/groups", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("서버 응답이 실패했습니다.");
+    if (userId) {
+      const formData = new FormData();
+      formData.append("groupName", groupName);
+      formData.append("role", selectedRole);
+      formData.append("userId", userId);
+      if (image) {
+        formData.append("image", image);
       }
 
-      console.log("제출된 데이터:", {
-        groupName,
-        imageUploaded: !!image,
-        role: selectedRole,
-      });
+      try {
+        const response = await fetch("/api/createGroup", {
+          method: "POST",
+          body: formData,
+        });
 
-      toast.success("그룹이 성공적으로 생성되었습니다!");
-    } catch (error) {
-      console.error("그룹 생성 중 오류 발생:", error);
-      toast.error("그룹 생성 중 오류가 발생했습니다. 다시 시도해주세요.");
+        if (!response.ok) {
+          throw new Error("서버 응답이 실패했습니다.");
+        }
+
+        console.log("제출된 데이터:", {
+          groupName,
+          imageUploaded: !!image,
+          role: selectedRole,
+        });
+
+        const data = await response.json();
+        setGroupId(data.groupId);
+
+        toast.success("그룹이 성공적으로 생성되었습니다!");
+        setTimeout(() => {
+          router.push("/invite-code");
+        }, 1500);
+      } catch (error) {
+        console.error("그룹 생성 중 오류 발생:", error);
+        toast.error("그룹 생성 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
     }
   };
 
