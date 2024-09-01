@@ -1,14 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+
 import SignUpForm from "./_components/SignUpForm";
+import Spinner from "../_components/Spinner";
 
 export default function SignInPage() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   return (
     <main className="flex min-h-screen flex-col items-center select-none overflow-x-hidden overflow-y-scroll">
+      {isLoading && <Spinner />}
       <section className="mt-3 w-full py-10 px-5">
         <div className="w-full flex flex-col justify-start items-start gap-y-6">
-          <SignUpForm />
+          <SignUpForm isLoading={isLoading} setIsLoading={setIsLoading} />
           <div className="mt-3 w-full flex flex-row justify-center items-center">
             <span className="text-sm text-[#636473] font-bold tracking-tight leading-4">
               or

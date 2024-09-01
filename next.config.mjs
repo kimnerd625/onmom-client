@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -8,6 +8,9 @@ const nextConfig = {
     });
 
     return config;
+  },
+  images: {
+    domains: ["onmom-files.s3.ap-northeast-2.amazonaws.com"],
   },
 };
 export default nextConfig;

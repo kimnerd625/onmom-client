@@ -8,15 +8,16 @@ interface DeepGramMessage {
   is_final: boolean;
 }
 
+//
 let mediaRecorder: MediaRecorder | null = null;
 
-// 오디오 허용
+// getAudioAllow : 브라우저 상 오디오 허용
 export const getAudioAllow = async (): Promise<MediaRecorder | null> => {
   try {
     const mediaStream = await window.navigator.mediaDevices.getUserMedia({
       audio: true,
     });
-    mediaRecorder = new MediaRecorder(mediaStream);
+    mediaRecorder = new MediaRecorder(mediaStream, { mimeType: "audio/webm" });
     return mediaRecorder;
   } catch (e) {
     console.error(e);
@@ -24,13 +25,14 @@ export const getAudioAllow = async (): Promise<MediaRecorder | null> => {
   }
 };
 
-// 웹 소켓 - 말하기 핸들링
+// handleSpeak : 웹 소켓 - 말하기 핸들링
 export const handleSpeak = async (
-  setTranscript: (transcript: string) => void
+  setTranscript: (transcript: string) => void,
+  maxTranscriptLength: number = 100 // maxTranscriptLength : 한 번에 인식할 최대 문장 길이, 100자
 ): Promise<void> => {
   if (mediaRecorder) {
     const socket = new WebSocket(
-      "wss://api.deepgram.com/v1/listen?language=ko",
+      "wss://api.deepgram.com/v1/listen?language=ko&chunk_size=2000",
       ["token", process.env.NEXT_PUBLIC_DEEPGRAM_API_KEY as string]
     );
 
@@ -41,7 +43,7 @@ export const handleSpeak = async (
             socket.send(event.data);
           }
         });
-        mediaRecorder.start(500);
+        mediaRecorder.start(5000); // 2초마다 데이터 청크를 전송
       }
     };
 
@@ -58,7 +60,11 @@ export const handleSpeak = async (
           const transcript = received.channel.alternatives[0].transcript;
           if (transcript && received.is_final) {
             console.log(transcript);
-            setTranscript(transcript);
+            if (transcript.length <= maxTranscriptLength) {
+              setTranscript(transcript);
+            } else {
+              setTranscript(transcript.slice(0, maxTranscriptLength) + "...");
+            }
           }
         } else {
           console.warn("No transcript found in the received message.");
@@ -74,19 +80,20 @@ export const handleSpeak = async (
   }
 };
 
-// 녹음 중지 함수 추가
+// stopRecording : 녹음 중지
 export const stopRecording = (): void => {
   if (mediaRecorder && mediaRecorder.state !== "inactive") {
     mediaRecorder.stop();
   }
 };
 
-// DeepGram AI 말하기 함수
+// handleGetAudio : DeepGram AI 말하기
 export const handleGetAudio = async (
-  setTranscript: (transcript: string) => void
+  setTranscript: (transcript: string) => void,
+  maxTranscriptLength: number = 100
 ): Promise<void> => {
   mediaRecorder = await getAudioAllow();
   if (mediaRecorder) {
-    await handleSpeak(setTranscript);
+    await handleSpeak(setTranscript, maxTranscriptLength);
   }
 };
