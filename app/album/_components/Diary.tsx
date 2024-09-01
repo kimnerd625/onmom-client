@@ -8,8 +8,14 @@ import type { DiaryData } from "../Types/DiaryData";
 
 import ShareIcon from "@/public/icons/icon-share-white.svg";
 import DiaryCard from "./Diary/DiaryCard";
-import { initialDiaryData } from "../_data/initialData";
 import PlayButton from "./Diary/PlayButton";
+
+interface DiaryProps {
+  diariesData: DiaryData[];
+  setDiariesData: Dispatch<SetStateAction<DiaryData[]>>;
+  diaryIdx: number;
+  setDiaryIdx: Dispatch<SetStateAction<number>>;
+}
 
 interface ShareProps {
   isOpenShare: boolean;
@@ -23,16 +29,17 @@ interface CaptureDataProps {
 }
 
 export default function Diary({
+  diariesData,
+  setDiariesData,
+  diaryIdx,
+  setDiaryIdx,
   captureData,
   setCaptureData,
   isOpenShare,
   setIsOpenShare,
   setShareDiaryData,
-}: ShareProps & CaptureDataProps) {
+}: DiaryProps & ShareProps & CaptureDataProps) {
   const captureRef = useRef(null);
-
-  const [diaryData, setDiaryData] = useState<DiaryData[]>(initialDiaryData);
-  const [diaryIdx, setDiaryIdx] = useState<number>(0);
 
   const [isSwiping, setIsSwiping] = useState<boolean>(false);
   const [deg, setDeg] = useState<number>(0);
@@ -41,7 +48,7 @@ export default function Diary({
 
   const shareHandler = async () => {
     setIsOpenShare(!isOpenShare);
-    setShareDiaryData(diaryData[diaryIdx]);
+    setShareDiaryData(diariesData[diaryIdx]);
   };
 
   const diaryHandler = useSwipeable({
@@ -51,8 +58,8 @@ export default function Diary({
       if (deg <= -10) {
         console.log("다음 데이터");
 
-        if (diaryIdx === diaryData.length - 1) {
-          setDiaryIdx(diaryData.length - 1);
+        if (diaryIdx === diariesData.length - 1) {
+          setDiaryIdx(diariesData.length - 1);
         } else {
           setDiaryIdx((preState) => preState + 1);
         }
@@ -99,30 +106,6 @@ export default function Diary({
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/api/getDiary", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("그림일기 정보를 가져오는 데 실패했습니다.");
-        }
-
-        const data = await response.json();
-        setDiaryData(data);
-      } catch (error) {
-        console.error("그림일기 조회 중 오류 발생", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
     const captureData = async () => {
       if (captureRef.current) {
         const canvas = await html2canvas(captureRef.current, { scale: 1 });
@@ -159,16 +142,16 @@ export default function Diary({
           )}`}
         >
           <DiaryCard
-            title={diaryData[diaryIdx].title}
-            createdAt={diaryData[diaryIdx].createdAt}
-            imageUrl={diaryData[diaryIdx].imageUrl}
-            summaryContent={diaryData[diaryIdx].summaryContent}
+            title={diariesData[diaryIdx].title}
+            createdAt={diariesData[diaryIdx].createdAt}
+            imageUrl={diariesData[diaryIdx].imageUrl}
+            summaryContent={diariesData[diaryIdx].summaryContent}
           />
           <div className="bg-white p-2 group:hover:border group-hover:border-t-4 group-hover:border-t-blue-600 absolute -bottom-10 left-1/2 transform -translate-x-1/2 rounded-full">
             <PlayButton
               isSwiping={isSwiping}
               isOpenShare={isOpenShare}
-              audioUrl={diaryData[diaryIdx].audioUrl}
+              audioUrl={diariesData[diaryIdx].audioUrl}
             />
           </div>
         </div>
@@ -183,24 +166,24 @@ export default function Diary({
           <div className="absolute inset-0 bg-white bg-opacity-5 backdrop-blur-sm z-10"></div>
           <DiaryCard
             title={
-              diaryIdx + 1 === diaryData.length
+              diaryIdx + 1 === diariesData.length
                 ? ""
-                : diaryData[diaryIdx + 1].title
+                : diariesData[diaryIdx + 1].title
             }
             createdAt={
-              diaryIdx + 1 === diaryData.length
+              diaryIdx + 1 === diariesData.length
                 ? ""
-                : diaryData[diaryIdx + 1].createdAt
+                : diariesData[diaryIdx + 1].createdAt
             }
             imageUrl={
-              diaryIdx + 1 === diaryData.length
+              diaryIdx + 1 === diariesData.length
                 ? ""
-                : diaryData[diaryIdx + 1].imageUrl
+                : diariesData[diaryIdx + 1].imageUrl
             }
             summaryContent={
-              diaryIdx + 1 === diaryData.length
+              diaryIdx + 1 === diariesData.length
                 ? ""
-                : diaryData[diaryIdx + 1].summaryContent
+                : diariesData[diaryIdx + 1].summaryContent
             }
           />
         </div>

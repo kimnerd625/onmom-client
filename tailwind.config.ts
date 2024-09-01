@@ -28,6 +28,7 @@ const config: Config = {
           first: "#FFC13D",
           second: "#FFF0CA",
           third: "#F1F1F1",
+          interest: "#FFF2E2",
         },
         text: {
           main: "#202226",
