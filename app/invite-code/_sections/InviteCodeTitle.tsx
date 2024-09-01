@@ -1,8 +1,11 @@
-interface InviteCodeTitleProps {
-  name: string;
-}
+"use client";
 
-const InviteCodeTitle = ({ name }: InviteCodeTitleProps) => {
+import { getLoginUser } from "@/app/_utils/loginUserInfo";
+
+const InviteCodeTitle = () => {
+  const loginUser = getLoginUser();
+  const name = JSON.parse(loginUser!).name;
+
   return (
     <section className="flex flex-col justify-center items-center overflow-x-hidden overflow-y-auto w-full">
       <div className="text-center">
