@@ -9,6 +9,13 @@ import {
   handlePhoneChange,
 } from "../_utils/handleValidation";
 import Spinner from "@/app/_components/Spinner";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
 interface SignUpFormProps {
   isLoading: boolean;
@@ -27,7 +34,8 @@ const SignUpForm = ({ isLoading, setIsLoading }: SignUpFormProps) => {
 
   const router = useRouter();
 
-  const handleSignUpButton = async () => {
+  const handleSignUpButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setIsLoading(true);
     try {
       const response = await fetch("/api/signup", {
@@ -99,6 +107,18 @@ const SignUpForm = ({ isLoading, setIsLoading }: SignUpFormProps) => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        <Select onValueChange={(value) => setGender(value)}>
+          <SelectTrigger
+            className="h-[46px] w-full rounded-2xl border border-[#E5E5E5] px-5 py-2.5 text-sm font-bold text-[#636473] focus:outline-none focus:border-none focus:ring-0"
+            onClick={(e) => e.stopPropagation()} // 이벤트 전파 방지
+          >
+            <SelectValue placeholder="성별" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="male">남성</SelectItem>
+            <SelectItem value="female">여성</SelectItem>
+          </SelectContent>
+        </Select>
         <input
           id="phone"
           type="tel"
@@ -109,25 +129,6 @@ const SignUpForm = ({ isLoading, setIsLoading }: SignUpFormProps) => {
             handlePhoneChange(e, setPhone);
           }}
         />
-        <select
-          id="gender"
-          className="h-[46px] w-full rounded-2xl border border-[#E5E5E5] placeholder:text-[#666666] text-sm font-bold text-[#636473] focus:outline-none block px-5 py-2.5"
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
-        >
-          <option value="" disabled className="text-gray-400">
-            성별 선택
-          </option>
-          <option value="male" className="text-black">
-            남성
-          </option>
-          <option value="female" className="text-black">
-            여성
-          </option>
-          <option value="other" className="text-black">
-            기타
-          </option>
-        </select>
         <button
           onClick={handleSignUpButton}
           className={`mt-[12px] h-[46px] w-full rounded-2xl text-white font-bold text-base tracking-tight leading-4 px-5 py-2.5 ${
