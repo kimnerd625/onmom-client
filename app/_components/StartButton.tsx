@@ -5,6 +5,7 @@ import { useSwipeable } from "react-swipeable";
 import { useRouter } from "next/navigation";
 import SwipeIcon from "@/public/icons/icon-swipe.svg";
 
+
 const StartButton = () => {
   const [translateX, setTranslateX] = useState(0);
   const router = useRouter(); // useRouter 훅을 사용하여 네비게이션 제어
