@@ -5,16 +5,26 @@ interface MenuCardProps {
   subText: string;
   Icon: React.ElementType;
   color?: string;
+  handleButton?: () => {};
 }
 
-const MenuCard = ({ mainText, subText, Icon, color }: MenuCardProps) => {
+const MenuCard = ({
+  mainText,
+  subText,
+  Icon,
+  color = "main",
+  handleButton,
+}: MenuCardProps) => {
   return (
-    <div className="w-full flex flex-row justify-start items-start gap-x-3">
+    <div
+      onClick={handleButton}
+      className="w-full flex flex-row justify-start items-start gap-x-3"
+    >
       <Icon width={20} height={20} />
       <div className="w-full flex flex-1 flex-col justify-start items-start">
         <h4
-          className={`text-sm text-text-main font-semibold tracking-tight leading-6${
-            color == "red" ? "text-red-900" : "text-text-main"
+          className={`text-sm font-semibold tracking-tight leading-6 ${
+            color === "red" ? "text-system-critical" : "text-text-main"
           }`}
         >
           {mainText}

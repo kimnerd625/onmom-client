@@ -7,6 +7,7 @@ import UserIcon from "@/public/icons/icon-user.svg";
 import UserSettingIcon from "@/public/icons/icon-user-setting.svg";
 import LogoutIcon from "@/public/icons/icon-logout.svg";
 import TrashIcon from "@/public/icons/icon-trash.svg";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export default function UserInfoPage() {
   return (
@@ -39,13 +40,20 @@ export default function UserInfoPage() {
         <MenuCard
           mainText="로그아웃"
           subText="계정을 로그아웃합니다."
+          color="red"
           Icon={LogoutIcon}
         />
-        <MenuCard
-          mainText="회원탈퇴"
-          subText="계정을 영구적으로 삭제합니다."
-          Icon={TrashIcon}
-        />
+        <Dialog>
+          <DialogTrigger asChild>
+            <MenuCard
+              mainText="회원탈퇴"
+              subText="계정을 영구적으로 삭제합니다."
+              color="red"
+              Icon={TrashIcon}
+            />
+          </DialogTrigger>
+          <DialogContent></DialogContent>
+        </Dialog>
       </section>
     </main>
   );
