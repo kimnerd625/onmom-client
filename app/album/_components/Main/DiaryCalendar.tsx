@@ -4,6 +4,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { useEffect, useState } from "react";
 import { DiaryData } from "../../Types/DiaryData";
 import { getLoginUser } from "@/app/_utils/loginUserInfo";
+import { getGroupId } from "@/app/_utils/groupId";
 
 export default function DiaryCalendar() {
   const [diaries, setDiaries] = useState<DiaryData[]>([]);
@@ -23,8 +24,9 @@ export default function DiaryCalendar() {
   );
 
   useEffect(() => {
-    const groupId = JSON.parse(getGroupId());
-    const { userId } = JSON.parse(getLoginUser());
+    const groupId = getGroupId();
+    const loginUser = getLoginUser();
+    const userId = JSON.parse(loginUser!).userId;
     const year = selectYear;
     const month = selectMonth;
 

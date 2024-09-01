@@ -19,8 +19,8 @@ export default function AlbumPage() {
 
   return (
     <div className="relative flex items-center justify-start w-[375px] h-[812px] mr-1 overflow-hidden">
-      <Main />
-      {/* <Diary
+      {/* <Main /> */}
+      <Diary
         setShareDiaryData={setShareDiaryData}
         captureData={captureData}
         setCaptureData={setCaptureData}
@@ -33,7 +33,7 @@ export default function AlbumPage() {
         captureData={captureData}
         isOpenShare={isOpenShare}
         setIsOpenShare={setIsOpenShare}
-      /> */}
+      />
     </div>
   );
 }
