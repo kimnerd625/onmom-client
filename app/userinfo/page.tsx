@@ -1,3 +1,5 @@
+"use client";
+
 import MenuCard from "./_components/MenuCard";
 import UserProfile from "./_components/UserProfile";
 
@@ -7,9 +9,43 @@ import UserIcon from "@/public/icons/icon-user.svg";
 import UserSettingIcon from "@/public/icons/icon-user-setting.svg";
 import LogoutIcon from "@/public/icons/icon-logout.svg";
 import TrashIcon from "@/public/icons/icon-trash.svg";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import UserDeleteIcon from "@/public/icons/icon-delete-user.svg";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogOverlay,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function UserInfoPage() {
+  const router = useRouter();
+
+  const signOutUser = async () => {
+    try {
+      const response = await fetch("/api/signOut", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        toast.error("로그아웃에 실패했습니다.");
+      }
+
+      toast.success("성공적으로 로그아웃했습니다.");
+      setTimeout(() => {
+        router.push("/signin");
+      }, 1500);
+    } catch (error) {
+      toast.error("로그아웃에 실패했습니다.");
+    }
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center select-none overflow-x-hidden overflow-y-scroll">
       <UserProfile />
@@ -42,6 +78,7 @@ export default function UserInfoPage() {
           subText="계정을 로그아웃합니다."
           color="red"
           Icon={LogoutIcon}
+          handleButton={signOutUser}
         />
         <Dialog>
           <DialogTrigger asChild>
@@ -52,7 +89,28 @@ export default function UserInfoPage() {
               Icon={TrashIcon}
             />
           </DialogTrigger>
-          <DialogContent></DialogContent>
+          <DialogContent className="rounded-3xl">
+            <div className="w-full flex flex-col justify-start items-center gap-y-6 px-6 py-7">
+              <section className="w-full flex flex-col justify-center items-center gap-y-3">
+                <UserDeleteIcon width={132} height={132} />
+                <h4 className="text-xl tracking-tight leading-10 text-[#27364E] font-bold">
+                  계정을 영구적으로 삭제하시겠습니까?
+                </h4>
+                <p className="text-sm tracking-tight leading-7 text-[#838FA0] font-medium text-center">
+                  온맘에서 작성한 모든 활동 내역이 삭제됩니다. <br />
+                  삭제된 정보는 다시 복구할 수 없습니다. <br />
+                  <br />
+                  기기변경 / 재설치의 경우에는 탈퇴하지 마시고 <br />
+                  기존 온맘 계정으로 접속하시면 복원 가능합니다. <br />
+                </p>
+              </section>
+              <button className="flex flex-col justify-center items-center py-3 px-11 rounded-[30px] bg-brand-main_600">
+                <span className="font-semibold text-base text-white tracking-tight leading-6">
+                  회원 탈퇴하기
+                </span>
+              </button>
+            </div>
+          </DialogContent>
         </Dialog>
       </section>
     </main>
