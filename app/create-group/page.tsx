@@ -68,7 +68,7 @@ export default function Group() {
     }
 
     try {
-      const response = await fetch("/groups", {
+      const response = await fetch("/api/createGroup", {
         method: "POST",
         body: formData,
       });
@@ -82,6 +82,10 @@ export default function Group() {
         imageUploaded: !!image,
         role: selectedRole,
       });
+
+      if (response) {
+        console.log(response.json());
+      }
 
       toast.success("그룹이 성공적으로 생성되었습니다!");
     } catch (error) {
