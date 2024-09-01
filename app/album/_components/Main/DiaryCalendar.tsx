@@ -1,14 +1,35 @@
-"use Client";
+"use client";
 
+import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Calendar } from "@/components/ui/calendar";
-import { useEffect, useState } from "react";
 import { DiaryData } from "../../Types/DiaryData";
 import { getLoginUser } from "@/app/_utils/loginUserInfo";
 import { getGroupId } from "@/app/_utils/groupId";
 
-export default function DiaryCalendar() {
-  const [diaries, setDiaries] = useState<DiaryData[]>([]);
-  const [diariesDate, setDiariesDate] = useState<Date[]>([]);
+interface DiaryCalendarProps {
+  setIsDiaryOpen: Dispatch<SetStateAction<boolean>>;
+}
+interface DiaryProps {
+  diariesData: DiaryData[];
+  setDiariesData: Dispatch<SetStateAction<DiaryData[]>>;
+  diaryIdx: number;
+  setDiaryIdx: Dispatch<SetStateAction<number>>;
+}
+
+export default function DiaryCalendar({
+  setIsDiaryOpen,
+  diariesData,
+  setDiariesData,
+  diaryIdx,
+  setDiaryIdx,
+}: DiaryCalendarProps & DiaryProps) {
+  const [diariesDate, setDiariesDate] = useState<Date[]>([
+    new Date(
+      `${new Date("2024-9-12").getFullYear()}-${
+        new Date("2024-9-12").getMonth() + 1
+      }-${new Date("2024-9-12").getDate()}`
+    ),
+  ]);
 
   const [selected, setSelected] = useState<Date | undefined>(new Date());
 
@@ -23,41 +44,100 @@ export default function DiaryCalendar() {
     selected ? selected.getDate() : new Date().getDate()
   );
 
-  useEffect(() => {
+  const fetchData = async (year: number, month: number) => {
     const groupId = getGroupId();
     const loginUser = getLoginUser();
-    const userId = JSON.parse(loginUser!).userId;
-    const year = selectYear;
-    const month = selectMonth;
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `/api/getMonthDiary?groupId=${groupId}&userId=${userId}&year=${year}&month=${month}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+    if (!loginUser) {
+      console.error("로그인 정보가 없습니다.");
+      return;
+    }
 
-        if (!response.ok) {
-          throw new Error("그림일기 정보를 가져오는 데 실패했습니다.");
+    const userId = JSON.parse(loginUser).userId;
+
+    try {
+      const response = await fetch(
+        `/api/getMonthDiary?groupId=${groupId}&userId=${userId}&year=${year}&month=${month}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
+      );
 
-        const data = await response.json();
-        setDiaries(data);
-
-        const diariesDate = diaries.map((diary) => new Date(diary.createdAt));
-        setDiariesDate(diariesDate);
-      } catch (error) {
-        console.error("그림일기 월별 조회에 오류가 발생하였습니다.", error);
+      if (!response.ok) {
+        throw new Error("그림일기 정보를 가져오는 데 실패했습니다.");
       }
-    };
 
-    fetchData();
-  }, []);
+      const data = await response.json();
+      setDiariesData(data);
+
+      const diariesDate = data.map((diary: DiaryData) => {
+        return new Date(
+          `${new Date(diary.createdAt).getFullYear()}-${
+            new Date(diary.createdAt).getMonth() + 1
+          }-${new Date(diary.createdAt).getDate()}`
+        );
+      });
+      setDiariesDate(diariesDate);
+    } catch (error) {
+      console.error("그림일기 월별 조회에 오류가 발생하였습니다.", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(selectYear, selectMonth);
+  }, [selectYear, selectMonth]);
+
+  useEffect(() => {
+    if (selected) {
+      setSelectYear(selected.getFullYear());
+      setSelectMonth(selected.getMonth() + 1);
+      setSelectDate(selected.getDate());
+    }
+  }, [selected]);
+
+  const handleNextClick = () => {
+    setSelectMonth((prevMonth) => {
+      const newMonth = prevMonth + 1;
+      if (newMonth > 12) {
+        setSelectYear((prevYear) => prevYear + 1);
+        return 1;
+      }
+      return newMonth;
+    });
+  };
+
+  const handlePrevClick = () => {
+    setSelectMonth((prevMonth) => {
+      const newMonth = prevMonth - 1;
+      if (newMonth < 1) {
+        setSelectYear((prevYear) => prevYear - 1);
+        return 12;
+      }
+      return newMonth;
+    });
+  };
+
+  const getDiaryIndex = (date: Date, diariesDate: Date[]): number => {
+    return diariesDate.findIndex(
+      (diaryDate) =>
+        diaryDate.getFullYear() === date.getFullYear() &&
+        diaryDate.getMonth() === date.getMonth() &&
+        diaryDate.getDate() === date.getDate()
+    );
+  };
+
+  const handleDayClick = (date: Date) => {
+    setSelected(date);
+    const index = getDiaryIndex(date, diariesDate);
+
+    if (index != -1) {
+      setIsDiaryOpen(true);
+      setDiaryIdx(index);
+    }
+  };
 
   return (
     <Calendar
@@ -66,6 +146,9 @@ export default function DiaryCalendar() {
       onSelect={setSelected}
       className="rounded-md border"
       markedDates={diariesDate}
+      onNextClick={handleNextClick}
+      onPrevClick={handlePrevClick}
+      onDayClick={handleDayClick}
     />
   );
 }
