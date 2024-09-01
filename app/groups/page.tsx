@@ -23,7 +23,7 @@ export default function Group() {
         </Link>
 
         <Link
-          href="create-group"
+          href="join-group"
           className="w-full flex flex-row justify-center items-center pr-6"
         >
           <div className="flex justify-center items-center rounded-[22px] bg-[#FF6411] px-8 py-3 text-[#FFECD6] font-bold">
