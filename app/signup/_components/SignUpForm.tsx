@@ -4,13 +4,20 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
+import {
+  handleEmailChange,
+  handlePhoneChange,
+} from "../_utils/handleValidation";
+
 const SignUpForm = () => {
   const [email, setEmail] = useState<string>("");
+  const [emailValid, setEmailValid] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
   const [passwordConfirmed, setPasswordConfirmed] = useState<string>("");
-  const [birthdate, setBirthdate] = useState<string>("1995-02-10");
   const [name, setName] = useState<string>("");
-  const [phone, setPhone] = useState<string>("010-7510-1981");
+  const [phone, setPhone] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+  const [birthdate, setBirthdate] = useState<string>("1995-02-10");
 
   const router = useRouter();
 
@@ -27,6 +34,7 @@ const SignUpForm = () => {
           name,
           birthdate,
           phone,
+          gender,
         }),
       });
 
@@ -56,7 +64,7 @@ const SignUpForm = () => {
           className="h-[46px] w-full rounded-2xl focus:outline-none border border-[#E5E5E5] placeholder:text-[#666666] px-5 py-2.5 text-sm font-bold text-[#636473]"
           placeholder="이메일"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => handleEmailChange(e, setEmail, setEmailValid)}
         />
         <input
           type="password"
@@ -88,7 +96,9 @@ const SignUpForm = () => {
           className="h-[46px] w-full rounded-2xl focus:outline-none border border-[#E5E5E5] placeholder:text-[#666666] px-5 py-2.5 text-sm font-bold text-[#636473]"
           placeholder="전화번호"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) => {
+            handlePhoneChange(e, setPhone);
+          }}
         />
         <button
           onClick={handleSignUpButton}

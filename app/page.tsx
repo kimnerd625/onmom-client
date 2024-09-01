@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import SwipeIcon from "@/public/icons/icon-swipe.svg";
 import StartButton from "./_components/StartButton";
 
 export default function Home() {
@@ -24,11 +22,6 @@ export default function Home() {
       </div>
       <div className="w-full px-4">
         <StartButton />
-      </div>
-      <div>
-        <h4>
-          오늘의 복용 스케줄
-        </h4>
       </div>
     </main>
   );
