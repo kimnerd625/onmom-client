@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   try {
-    const apiUrl = `${process.env.NEXT_BACK_SERVER}/diary`;
+    const apiUrl = `http://15.165.54.182:8080/diaries`;
 
     const cookieHeader = request.headers.get("cookie");
 
