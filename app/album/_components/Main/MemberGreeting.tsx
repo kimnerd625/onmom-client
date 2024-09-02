@@ -15,7 +15,7 @@ export default function MemberGreeting() {
   }, []);
 
   return (
-    <div className=" text-xl font-bold text-gray-800 my-5 py-4 px-6 rounded-lg bg-gray-100 shadow-md">
+    <div className=" text-xl font-bold text-gray-800 my-5 py-4 px-6 rounded-lg">
       {greetingMessage}
     </div>
   );

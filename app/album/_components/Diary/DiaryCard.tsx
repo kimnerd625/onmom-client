@@ -38,7 +38,17 @@ export default function DiaryCard({
       </div>
 
       <div className="relative flex flex-col mt-1">
-        <div className="text-xs leading-[26px]">{summaryContent}</div>
+        <div
+          className="text-xs leading-[26px] h-[90px] overflow-hidden p-1"
+          style={{
+            maxHeight: "80px",
+            overflowY: "scroll",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
+          {summaryContent}
+        </div>
       </div>
     </div>
   );
