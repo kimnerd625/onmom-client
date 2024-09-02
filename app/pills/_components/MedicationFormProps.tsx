@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 interface MedicationFormProps {
   userId: number;
@@ -26,7 +27,7 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
     console.log(data);
 
     try {
-      const response = await fetch("http://15.165.54.182:8080/medication", {
+      const response = await fetch("/api/createPillInfo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,14 +38,14 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
       const result = await response.json();
       console.log("Response:", result);
       if (response.ok) {
-        alert("복약 정보가 성공적으로 등록되었습니다.");
+        toast.success("복약 정보가 성공적으로 등록되었습니다.");
         onSubmit(); // 폼 제출 후 모달 닫기
       } else {
-        alert(`Error: ${result.message}`);
+        toast.error(`Error: ${result.message}`);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("등록 중 오류가 발생했습니다.");
+      toast.error("등록 중 오류가 발생했습니다.");
     }
   };
 
@@ -99,7 +100,7 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
 
       <button
         type="submit"
-        className="w-full py-2 bg-[#FF6411] text-white font-semibold rounded-md hover:bg-[#ff5900]"
+        className="w-full py-2 bg-brand-main_500 text-white font-semibold rounded-md hover:bg-[#ff5900]"
       >
         등록하기
       </button>
