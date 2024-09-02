@@ -25,9 +25,9 @@ export default function DiaryCalendar({
 }: DiaryCalendarProps & DiaryProps) {
   const [diariesDate, setDiariesDate] = useState<Date[]>([
     new Date(
-      `${new Date("2024-9-12").getFullYear()}-${
-        new Date("2024-9-12").getMonth() + 1
-      }-${new Date("2024-9-12").getDate()}`
+      `${new Date("2024-09-01").getFullYear()}-${
+        new Date("2024-09-01").getMonth() + 1
+      }-${new Date("2024-09-01").getDate()}`
     ),
   ]);
 
