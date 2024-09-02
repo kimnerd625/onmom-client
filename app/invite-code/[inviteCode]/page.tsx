@@ -4,8 +4,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation"; // usePathname 추가
 import { getLoginUser } from "../../_utils/loginUserInfo";
-import { getGroupId } from "../../_utils/groupId";
 import { toast } from "sonner";
+import { setGroupId } from "@/app/_utils/groupId";
 
 export default function Group() {
   const [inviteCode, setInviteCode] = useState<string[]>(Array(5).fill(""));
@@ -13,7 +13,7 @@ export default function Group() {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const router = useRouter();
-  const pathname = usePathname(); // usePathname 사용하여 현재 경로 가져오기
+  const pathname = usePathname(); // 현재 경로 가져오기
   const inviteCodeFromURL = pathname.split("/").pop(); // URL의 마지막 부분에서 초대 코드 추출
 
   useEffect(() => {
@@ -68,7 +68,6 @@ export default function Group() {
       const loginUser = getLoginUser();
       const userId = JSON.parse(loginUser!).userId;
       const inviteCode = codeString;
-      const groupId = getGroupId();
 
       try {
         const response = await fetch("/api/joinGroup", {
@@ -77,7 +76,6 @@ export default function Group() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            groupId: groupId,
             userId: Number(userId),
             code: inviteCode,
             role: role,
@@ -89,10 +87,13 @@ export default function Group() {
           throw new Error(errorData.error || "그룹 참여에 실패했습니다.");
         }
         const responseData = await response.json();
+        setGroupId(responseData.groupId);
         console.log("Response:", responseData);
         toast.success("성공적으로 그룹에 가입했습니다!");
+
+        const newPath = `${pathname}/group-join-success`;
         setTimeout(() => {
-          router.push("/group-join-success");
+          router.push(newPath);
         }, 1500);
       } catch (error) {
         console.error("Error:", error);

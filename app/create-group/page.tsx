@@ -108,7 +108,7 @@ export default function Group() {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center overflow-x-hidden overflow-y-auto w-full min-h-screen">
+    <main className="flex flex-col justify-center items-center overflow-x-hidden overflow-y-hidden w-full min-h-screen">
       <form onSubmit={handleSubmit} className="w-full max-w-md">
         <div className="text-center">
           <h2 className="font-bold text-xl text-black tracking-tight leading-5 mt-30">
