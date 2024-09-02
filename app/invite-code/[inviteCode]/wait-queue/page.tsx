@@ -68,13 +68,26 @@ export default function InviteCodePage() {
   // 역할과 성별에 따라 표시할 이름을 결정하는 함수
   const getRoleLabel = (role: string, gender: string | null) => {
     if (role === "자식") {
-      if (gender === "남자" || gender === null) return "아들";
-      if (gender === "여자") return "딸";
+      if (gender === "남성") return "아들";
+      if (gender === "여성" || gender === null) return "딸";
     } else if (role === "부모") {
-      if (gender === "남자") return "아빠";
-      if (gender === "여자") return "엄마";
+      if (gender === "남성") return "아빠";
+      if (gender === "여성") return "엄마";
     }
     return role; // 기본 값 반환
+  };
+
+  // 역할에 따라 적절한 랜덤 프로필 이미지를 반환하는 함수
+  const getRandomProfileImage = (role: string) => {
+    if (role === "부모") {
+      return "/images/granny-default.jpeg";
+    } else {
+      const images = [
+        "/images/daughter-default.jpeg",
+        "/images/daughter-default-two.jpeg",
+      ];
+      return images[Math.floor(Math.random() * images.length)];
+    }
   };
 
   return (
@@ -103,7 +116,13 @@ export default function InviteCodePage() {
                     style={{ objectFit: "cover" }}
                   />
                 ) : (
-                  <></>
+                  <Image
+                    src="/images/family-bg.jpeg"
+                    alt="Default Group Image"
+                    width={70}
+                    height={70}
+                    style={{ objectFit: "cover" }}
+                  />
                 )}
               </div>
               <PlusIcon
@@ -136,7 +155,13 @@ export default function InviteCodePage() {
                       style={{ objectFit: "cover" }}
                     />
                   ) : (
-                    <div className="flex items-center justify-center w-full h-full text-gray-400"></div>
+                    <Image
+                      src={getRandomProfileImage(member.role)}
+                      alt="Default User Profile"
+                      width={50}
+                      height={50}
+                      style={{ objectFit: "cover" }}
+                    />
                   )}
                 </div>
                 <div className="ml-4">

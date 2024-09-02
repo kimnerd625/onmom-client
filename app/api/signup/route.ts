@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { email, password, name, birthdate, phone } = await request.json();
+    const { email, password, name, birthdate, phone, gender } =
+      await request.json();
 
     const apiUrl = "http://15.165.54.182:8080/users";
 
@@ -18,6 +19,7 @@ export async function POST(request: Request) {
         name,
         birthdate,
         phone,
+        gender,
       }),
     });
 
