@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-
 import { Toaster } from "sonner";
 
 const AppleSDGothicNeo = localFont({
@@ -53,6 +52,7 @@ const AppleSDGothicNeo = localFont({
     },
   ],
 });
+
 export const metadata: Metadata = {
   title: "온맘 - ON:MOM",
   description: "GEN AI HACKATHON - 온맘 : 독거노인 가족 연결 AI 서비스",
@@ -65,9 +65,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body className={AppleSDGothicNeo.className}>
+      <body className={`${AppleSDGothicNeo.className} bg-[#f7f7f7]`}>
         <Toaster position="top-center" richColors />
-        {children}
+        {/* 모바일 크기로 고정 */}
+        <div className="w-full min-h-screen flex justify-center items-center">
+          {/* 모바일 화면 고정 크기와 그림자 추가 */}
+          <div className="w-full sm:w-[375px] bg-white shadow-md">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );
