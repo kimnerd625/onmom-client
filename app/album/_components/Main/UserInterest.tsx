@@ -40,13 +40,13 @@ export default function UserInterest() {
 
   return (
     <div>
-      <div className="font-bold text-gray-800 mt-5 py-4">{title}</div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="font-bold text-gray-800 mt-5 p-4">{title}</div>
+      <div className="grid grid-cols-3 gap-4 p-3">
         {interests.map((interest, index) => (
           <button
             onClick={() => handleClick(interest.label)}
             key={index}
-            className={`flex justify-center items-center bg-album-interest w-[104px] h-[32px] py-2 pr-4 text-center text-sm font-bold rounded-2xl hover:opacity-60  ${
+            className={`flex justify-center items-center bg-album-interest h-[32px] py-2 pr-4 text-center text-sm font-bold rounded-2xl hover:opacity-60  ${
               selectInterest === interest.label
                 ? "bg-brand-main_600 text-white"
                 : "bg-album-interest hover:opacity-60"
