@@ -3,7 +3,26 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.url);
-    const groupId = url.searchParams.get("groupId");
+    let groupId = url.searchParams.get("groupId");
+
+    // groupId가 유효한지 확인하고, 불필요한 따옴표 제거
+    if (!groupId) {
+      return NextResponse.json(
+        { error: "그룹 ID가 제공되지 않았습니다." },
+        { status: 400 }
+      );
+    }
+
+    // 따옴표 제거
+    groupId = groupId.replace(/"/g, "");
+
+    // groupId가 숫자인지 확인
+    if (isNaN(Number(groupId))) {
+      return NextResponse.json(
+        { error: "유효하지 않은 그룹 ID입니다." },
+        { status: 400 }
+      );
+    }
 
     const apiUrl = `http://15.165.54.182:8080/groups/${groupId}`;
 

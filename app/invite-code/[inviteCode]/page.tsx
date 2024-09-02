@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation"; // usePathname 추가
 import { getLoginUser } from "../../_utils/loginUserInfo";
 import { toast } from "sonner";
+import { setGroupId } from "@/app/_utils/groupId";
 
 export default function Group() {
   const [inviteCode, setInviteCode] = useState<string[]>(Array(5).fill(""));
@@ -86,11 +87,11 @@ export default function Group() {
           throw new Error(errorData.error || "그룹 참여에 실패했습니다.");
         }
         const responseData = await response.json();
+        setGroupId(responseData.groupId);
         console.log("Response:", responseData);
         toast.success("성공적으로 그룹에 가입했습니다!");
 
-        // 현재 URL의 앞부분을 사용하여 group-join-success로 이동
-        const newPath = `${pathname}/wait-queue`;
+        const newPath = `${pathname}/group-join-success`;
         setTimeout(() => {
           router.push(newPath);
         }, 1500);
