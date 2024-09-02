@@ -8,10 +8,15 @@ import Spinner from "@/app/_components/Spinner";
 
 interface InviteCodeContentProps {
   groupId: string;
+  inviteCode: string;
+  setInviteCode: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const InviteCodeContent = ({ groupId }: InviteCodeContentProps) => {
-  const [inviteCode, setInviteCode] = useState("");
+const InviteCodeContent = ({
+  groupId,
+  inviteCode,
+  setInviteCode,
+}: InviteCodeContentProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

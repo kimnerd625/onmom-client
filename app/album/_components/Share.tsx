@@ -51,9 +51,6 @@ export default function Share({
     setIsOpenShare(false);
   };
 
-  // useEffect hook으로 데이터 받아오기
-  //
-
   return (
     <>
       <Script

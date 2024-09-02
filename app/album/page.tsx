@@ -10,6 +10,7 @@ import Share from "./_components/Share";
 import Main from "./_components/Main";
 
 import { initialDiaryData } from "./_data/initialData";
+import BottomTabNavigationBar from "../_components/BottomTabNavigationBar";
 
 export default function AlbumPage() {
   const [diariesData, setDiariesData] = useState<DiaryData[]>(initialDiaryData);
@@ -53,6 +54,8 @@ export default function AlbumPage() {
           />
         </>
       )}
+
+      <BottomTabNavigationBar />
     </div>
   );
 }
