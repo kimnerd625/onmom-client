@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { toast } from "sonner";
 import { getLoginUser } from "../_utils/loginUserInfo";
@@ -176,7 +177,6 @@ export default function Group() {
             부모님으로 참여
           </button>
         </div>
-
         <div className="flex justify-center mt-6">
           <button
             type="submit"
@@ -184,6 +184,12 @@ export default function Group() {
           >
             확인
           </button>
+        </div>
+        <div className="mt-8 flex text-[14px] justify-center text-center pt-2">
+          <p className="font-bold text-black">초대 받은 그룹이 있다면?</p>
+          <Link href="/invite-code/00000">
+            <p className="font-bold text-[#FFC46C] pl-2">초대 코드 입력하기</p>
+          </Link>
         </div>
       </form>
     </main>
