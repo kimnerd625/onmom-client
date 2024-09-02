@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 interface MedicationFormProps {
   userId: number;
-  groupId: number;
+  groupId: number | null;
   onSubmit: () => void;
 }
 
