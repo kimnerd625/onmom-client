@@ -41,18 +41,21 @@ export default function UserInterest() {
   return (
     <div>
       <div className="font-bold text-gray-800 mt-5 py-4">{title}</div>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-4">
         {interests.map((interest, index) => (
           <button
             onClick={() => handleClick(interest.label)}
             key={index}
-            className={`bg-album-interest w-full py-2 pr-2 text-center rounded-md hover:opacity-60  ${
+            className={`flex justify-center items-center bg-album-interest w-[104px] h-[32px] py-2 pr-4 text-center text-sm font-bold rounded-2xl hover:opacity-60  ${
               selectInterest === interest.label
-                ? "bg-blue-500 text-white"
+                ? "bg-brand-main_600 text-white"
                 : "bg-album-interest hover:opacity-60"
             }`}
           >
-            {interest.emoji} {interest.label}
+            <div className="flex justify-evenly w-full">
+              <div>{interest.emoji}</div>
+              <div>{interest.label}</div>
+            </div>
           </button>
         ))}
       </div>
