@@ -4,17 +4,15 @@ import { getLoginUser } from "@/app/_utils/loginUserInfo";
 import { useEffect, useState } from "react";
 
 export default function UserInterest() {
-  const loginUser = getLoginUser();
-
   const [title, setTitle] = useState<string>("회원님의 관심사");
-
   const [selectInterest, setSelectInterest] = useState<string>("");
 
   useEffect(() => {
-    if (loginUser) {
-      setTitle(`${JSON.parse(loginUser).name}님의 관심사`);
+    const LU = getLoginUser();
+    if (LU) {
+      setTitle(`${JSON.parse(LU).name}님의 관심사`);
     }
-  }, [loginUser]);
+  }, []);
 
   const interests = [
     { emoji: "📚", label: "교육" },

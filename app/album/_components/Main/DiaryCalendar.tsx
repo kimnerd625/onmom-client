@@ -86,7 +86,9 @@ export default function DiaryCalendar({
     const LU = getLoginUser();
     if (GID) setGroupId(GID);
     if (LU) setUserId(JSON.parse(LU).userId);
+  }, []);
 
+  useEffect(() => {
     fetchData(selectYear, selectMonth, userId, groupId);
   }, [selectYear, selectMonth]);
 
