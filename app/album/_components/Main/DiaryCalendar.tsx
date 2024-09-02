@@ -3,7 +3,7 @@
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { DiaryData } from "../../Types/DiaryData";
-import { getLoginUser } from "@/app/_utils/loginUserInfo";
+import { getLoginUser, setLoginUser } from "@/app/_utils/loginUserInfo";
 import { getGroupId } from "@/app/_utils/groupId";
 
 interface DiaryCalendarProps {
@@ -32,17 +32,17 @@ export default function DiaryCalendar({
   ]);
 
   const [selected, setSelected] = useState<Date | undefined>(new Date());
-
   const [selectYear, setSelectYear] = useState<number>(
     selected ? selected.getFullYear() : new Date().getFullYear()
   );
   const [selectMonth, setSelectMonth] = useState<number>(
     selected ? selected.getMonth() + 1 : new Date().getMonth()
   );
-
   const [selectDate, setSelectDate] = useState<number>(
     selected ? selected.getDate() : new Date().getDate()
   );
+  const [userId, setUserId] = useState<number>(0);
+  const [groupId, setGroupId] = useState<string>("");
 
   const fetchData = async (
     year: number,
@@ -82,20 +82,11 @@ export default function DiaryCalendar({
   };
 
   useEffect(() => {
-    const groupId = getGroupId();
-    const loginUser = getLoginUser();
+    const GID = getGroupId();
+    const LU = getLoginUser();
+    if (GID) setGroupId(GID);
+    if (LU) setUserId(JSON.parse(LU).userId);
 
-    if (!loginUser) {
-      console.error("로그인 정보가 없습니다.");
-      return;
-    }
-
-    if (!groupId) {
-      console.error("그룹 아이디가 없습니다.");
-      return;
-    }
-
-    const userId = JSON.parse(loginUser).userId;
     fetchData(selectYear, selectMonth, userId, groupId);
   }, [selectYear, selectMonth]);
 

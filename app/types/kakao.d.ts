@@ -25,6 +25,7 @@ interface Kakao {
 declare global {
   interface Window {
     Kakao: Kakao;
+    sessionStorage: sessionStorage;
   }
 }
 
