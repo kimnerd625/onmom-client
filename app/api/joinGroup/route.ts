@@ -2,14 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    const { groupId, userId, code, role } = await request.json();
+    const { userId, code, role } = await request.json();
 
-    console.log("Received data:", { groupId, userId, code, role });
+    console.log("Received data:", { userId, code, role });
 
     // code 배열을 문자열로 변환
     const inviteCode = code;
 
-    const apiUrl = `http://15.165.54.182:8080/groups/${groupId}/invite/accept`;
+    const apiUrl = `http://15.165.54.182:8080/groups/invite/accept`;
     // 클라이언트로부터 받은 쿠키를 가져옴
     const cookieHeader = request.headers.get("cookie");
 

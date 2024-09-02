@@ -5,7 +5,7 @@ import SignInForm from "./_components/SignInForm";
 
 export default function SignInPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center select-none overflow-x-hidden">
+    <main className="flex min-h-screen flex-col items-center select-none overflow-x-hidden overflow-y-hidden">
       <section className="mt-[100px] w-full py-10 px-5">
         <div className="w-full flex flex-col justify-start items-start gap-y-6">
           <div className="w-full flex flex-row justify-start items-cetner px-2">

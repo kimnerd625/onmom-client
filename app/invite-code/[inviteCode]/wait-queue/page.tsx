@@ -56,6 +56,9 @@ export default function InviteCodePage() {
         } finally {
           setLoading(false);
         }
+      } else {
+        toast.error("그룹 아이디가 없습니다.");
+        setLoading(false);
       }
     };
 
