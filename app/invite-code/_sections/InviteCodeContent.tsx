@@ -48,8 +48,10 @@ const InviteCodeContent = ({ groupId }: InviteCodeContentProps) => {
   }, [groupId]); // groupId가 변경될 때만 실행
 
   const handleCopyCode = () => {
+    const fullUrl = `${window.location.href}/${inviteCode}`;
+
     navigator.clipboard
-      .writeText(inviteCode)
+      .writeText(fullUrl)
       .then(() => {
         toast.success("초대 코드가 복사되었습니다.");
       })
