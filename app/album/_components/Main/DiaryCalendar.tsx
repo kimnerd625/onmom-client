@@ -44,17 +44,12 @@ export default function DiaryCalendar({
     selected ? selected.getDate() : new Date().getDate()
   );
 
-  const fetchData = async (year: number, month: number) => {
-    const groupId = getGroupId();
-    const loginUser = getLoginUser();
-
-    if (!loginUser) {
-      console.error("로그인 정보가 없습니다.");
-      return;
-    }
-
-    const userId = JSON.parse(loginUser).userId;
-
+  const fetchData = async (
+    year: number,
+    month: number,
+    userId: number,
+    groupId: string
+  ) => {
     try {
       const response = await fetch(
         `/api/getMonthDiary?groupId=${groupId}&userId=${userId}&year=${year}&month=${month}`,
@@ -87,7 +82,21 @@ export default function DiaryCalendar({
   };
 
   useEffect(() => {
-    fetchData(selectYear, selectMonth);
+    const groupId = getGroupId();
+    const loginUser = getLoginUser();
+
+    if (!loginUser) {
+      console.error("로그인 정보가 없습니다.");
+      return;
+    }
+
+    if (!groupId) {
+      console.error("그룹 아이디가 없습니다.");
+      return;
+    }
+
+    const userId = JSON.parse(loginUser).userId;
+    fetchData(selectYear, selectMonth, userId, groupId);
   }, [selectYear, selectMonth]);
 
   useEffect(() => {
