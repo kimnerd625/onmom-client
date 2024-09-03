@@ -5,7 +5,6 @@ import { useSwipeable } from "react-swipeable";
 import { useRouter } from "next/navigation";
 import SwipeIcon from "@/public/icons/icon-swipe.svg";
 
-
 const StartButton = () => {
   const [translateX, setTranslateX] = useState(0);
   const router = useRouter(); // useRouter 훅을 사용하여 네비게이션 제어
@@ -25,6 +24,7 @@ const StartButton = () => {
       // 스와이프를 왼쪽으로 하면 아이콘을 원래 위치로 되돌립니다.
       setTranslateX(0);
     },
+    trackMouse: true, // 마우스 이벤트를 활성화하여 웹 환경에서도 스와이프를 감지할 수 있도록 설정
   });
 
   return (

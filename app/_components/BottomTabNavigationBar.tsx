@@ -17,7 +17,7 @@ const BottomTabNavigationBar = () => {
   const currentSelected = usePathname().split("/").pop();
 
   return (
-    <section className="bg-white fixed bottom-0 w-full flex flex-row justify-between items-center px-8 py-6">
+    <section className="bg-white fixed bottom-0 w-full flex flex-row justify-between items-center px-8 py-6 md:w-[375px]">
       <Link href="/pills">
         <div className="flex flex-row justify-center items-center">
           {currentSelected == "pills" ? (

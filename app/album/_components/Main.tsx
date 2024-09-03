@@ -32,7 +32,7 @@ export default function Main({
         diariesData={diariesData}
         setDiariesData={setDiariesData}
         setIsDiaryOpen={setIsDiaryOpen}
-      ></DiaryCalendar>
+      />
       <UserInterest />
     </div>
   );
