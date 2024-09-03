@@ -4,13 +4,13 @@ import { getLoginUser } from "@/app/_utils/loginUserInfo";
 import { useEffect, useState } from "react";
 
 export default function UserInterest() {
-  const [title, setTitle] = useState<string>("회원님의 관심사");
+  const [title, setTitle] = useState<string>("부모님의 관심사");
   const [selectInterest, setSelectInterest] = useState<string>("");
 
   useEffect(() => {
     const LU = getLoginUser();
     if (LU) {
-      setTitle(`${JSON.parse(LU).name}님의 관심사`);
+      setTitle(`부모님의 관심사`);
     }
   }, []);
 

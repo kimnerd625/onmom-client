@@ -1,4 +1,9 @@
+import { DiaryData } from "@/app/(child)/album/Types/DiaryData";
+
 export const startRecording = async (
+  setData: React.Dispatch<React.SetStateAction<DiaryData>>,
+  setIsDone: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setIsRecording: React.Dispatch<React.SetStateAction<boolean>>,
   setAudioUrl: React.Dispatch<React.SetStateAction<string | null>>,
   mediaRecorderRef: React.MutableRefObject<MediaRecorder | null>,
@@ -44,19 +49,25 @@ export const startRecording = async (
     if (userId) formData.append("userId", userId);
 
     try {
+      setIsLoading(true);
       const response = await fetch("/api/uploadInterview", {
         method: "POST",
         body: formData,
-        // 'Content-Type'은 명시하지 않습니다.
       });
 
       if (!response.ok) {
         throw new Error("Failed to upload file");
       }
 
-      console.log("File successfully uploaded");
+      const data = await response.json();
+      if (data) {
+        setIsDone(true);
+        setData(data);
+      }
     } catch (error) {
       console.error("Error uploading file:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 

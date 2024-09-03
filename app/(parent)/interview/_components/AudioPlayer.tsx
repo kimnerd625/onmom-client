@@ -8,8 +8,8 @@ const AudioPlayer = ({ audioUrl }: AudioPlayerProps) => {
   if (!audioUrl) return null;
 
   return (
-    <div className="z-10 relative">
-      <audio src={audioUrl} controls className="w-full mt-4" />
+    <div className="z-10 relative w-full">
+      <audio src={audioUrl} controls className="w-full" />
       <p className="text-white">Audio Player is rendered</p>
     </div>
   );
