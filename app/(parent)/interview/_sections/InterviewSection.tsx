@@ -33,7 +33,7 @@ export default function InterviewSection() {
   }, [isRecording]);
 
   return (
-    <div className="w-full flex flex-col items-center justify-center min-h-screen bg-[#f7f7f7]">
+    <div className="relative w-full flex flex-col items-center justify-center min-h-screen bg-[#f7f7f7]">
       <VisualizerCanvas
         imageUrl="/images/logo-circle.png"
         isRecording={isRecording}
