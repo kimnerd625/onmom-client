@@ -70,7 +70,7 @@ export default function RootLayout({
       <body className={`${AppleSDGothicNeo.className} bg-[#f7f7f7] relative`}>
         <Toaster position="top-center" richColors />
         {/* 배경 이미지 추가 */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 -z-10 hidden sm:block">
           <Image
             src="/images/bg-gradient-2.png" // 이미지 경로 설정
             alt="Background gradient"

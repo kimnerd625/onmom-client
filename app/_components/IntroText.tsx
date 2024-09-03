@@ -72,7 +72,7 @@ const IntroText = () => {
   }, []);
 
   return (
-    <div className="absolute top-16 left-12 z-10">
+    <div className="absolute top-16 left-12 z-10 hidden sm:block">
       <h2
         ref={headingRef}
         className="text-4xl font-bold text-black space-y-2 leading-snug"
