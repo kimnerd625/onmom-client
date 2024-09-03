@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### 👩‍👧‍👧 Our Team
 
-## Getting Started
+| **🍀 [김지훈](https://github.com/)** | **🍀 [박다희](https://github.com/)** | **🍀 [신성우](https://github.com/)** |
+| :-----------------------------------: | :-----------------------------------: | :---------------------------------: |
+| **FrontEnd Developer**               | **FrontEnd Developer, Designer**       | **FrontEnd Developer**      |
+|  프로젝트 개발 환경 설정<br/> 프로젝트 초기 구조 구축 <br/> | 프로젝트 디자인 작업 <br/> 와이어프레임 작성  |                          |
 
-First, run the development server:
+
+## 배포 주소
+
+> **개발 버전** : [https://onmom-client.vercel.app/](https://onmom-client.vercel.app/)
+
+## 필수 요구 사항
+
+- **Node.js**: 
+  - **최소 버전**: 16.x
+  - **권장 버전**: 18.x 이상
+- **npm**:
+  - **최소 버전**: 7.x
+  - **권장 버전**: 8.x 이상
+
+## 시작하기
+
+### 1. 저장소 클론
+
+먼저, 이 저장소를 클론합니다:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/OnMomAiHackathon/onmom-client.git
+
+# 디렉토리 이동 :
+cd repository-name
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 의존성 설치
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 3. 개발 서버 실행
 
-## Learn More
+개발 모드에서 프로젝트를 실행하려면 다음 명령어를 사용합니다:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx next dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. 프로덕션 빌드
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+배포할 수 있는 정적 파일을 빌드하려면 다음 명령어를 사용하세요:
 
-## Deploy on Vercel
+```bash
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Stacks 🐈
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Environment
+
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
+
+### Config
+
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+
+### Development
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-18181B?style=for-the-badge&logo=zustand&logoColor=white)
+
+### Communication
+
+![Mattermost](https://img.shields.io/badge/Mattermost-0058CC?style=for-the-badge&logo=Mattermost&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+
+### 📖 Directory
+
+```
+src
+├── api
+├── assets
+│   ├── Invest
+│   ├── Login
+│   ├── Main
+│   ├── Mypage
+│   ├── Navbar
+│   ├── Signup
+│   ├── bankLogo
+│   ├── icons
+│   ├── images
+│   └── insuranceLogo
+├── components
+│   ├── Button
+│   ├── Card
+│   ├── Navbar
+│   ├── Routing
+│   └── Topbar
+├── fonts
+├── pages
+│   ├── Account
+│   ├── CashWalk
+│   ├── ChatBot
+│   ├── Login
+│   ├── Main
+│   ├── Mypage
+│   │   └── components
+│   ├── Payment
+│   ├── Signup
+│   ├── insurance
+│   └── investPet
+├── routes
+├── store
+└── utils
+```
