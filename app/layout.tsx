@@ -70,7 +70,7 @@ export default function RootLayout({
       <body className={`${AppleSDGothicNeo.className} bg-[#f7f7f7] relative`}>
         <Toaster position="top-center" richColors />
         {/* 배경 이미지 추가 */}
-        <div className="absolute inset-0 -z-10 hidden sm:block">
+        <div className="absolute inset-0 -z-10 hidden md:block">
           <Image
             src="/images/bg-gradient-2.png" // 이미지 경로 설정
             alt="Background gradient"
@@ -85,7 +85,7 @@ export default function RootLayout({
         {/* 모바일 크기로 고정 */}
         <div className="w-full min-h-screen flex justify-center items-center relative">
           {/* 모바일 화면 고정 크기와 그림자 추가 */}
-          <div className="w-full sm:w-[375px] bg-white shadow-md">
+          <div className="w-full md:w-[375px] bg-white shadow-md">
             {children}
           </div>
         </div>
