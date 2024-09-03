@@ -30,7 +30,7 @@ const SignUpForm = ({ isLoading, setIsLoading }: SignUpFormProps) => {
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [gender, setGender] = useState<string>("");
-  const [birthdate, setBirthdate] = useState<string>("1995-02-10");
+  const [birthdate, setBirthdate] = useState<string>("1930-02-02");
 
   const router = useRouter();
 
