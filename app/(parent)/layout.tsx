@@ -14,7 +14,7 @@ export default function RootLayout({
 
   // 뒤로 가기 함수
   const handleGoBack = () => {
-    router.back();
+    router.push("/signin");
   };
 
   return (
