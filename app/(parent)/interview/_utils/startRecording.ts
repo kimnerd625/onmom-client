@@ -5,7 +5,9 @@ export const startRecording = async (
   audioChunksRef: React.MutableRefObject<Blob[]>,
   audioContextRef: React.MutableRefObject<AudioContext | null>,
   analyserRef: React.MutableRefObject<AnalyserNode | null>,
-  playQuestion: (index: number) => void
+  playQuestion: (index: number) => void,
+  userId: string | null,
+  groupId: string | null
 ) => {
   setIsRecording(true);
   setAudioUrl(null);
@@ -36,13 +38,16 @@ export const startRecording = async (
 
     // Blob을 FormData에 추가하여 백엔드로 전송합니다.
     const formData = new FormData();
-    formData.append("file", audioBlob, "recording.mp3"); // "recording.mp3"는 전송할 파일의 이름입니다.
-    formData.append("groupId", "1");
+    formData.append("file", audioBlob, "recording.mp3");
+
+    if (groupId) formData.append("groupId", groupId);
+    if (userId) formData.append("userId", userId);
 
     try {
       const response = await fetch("/api/uploadInterview", {
         method: "POST",
         body: formData,
+        // 'Content-Type'은 명시하지 않습니다.
       });
 
       if (!response.ok) {

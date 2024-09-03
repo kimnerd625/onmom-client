@@ -86,22 +86,24 @@ const IntroText = () => {
 
   return (
     <>
-      <div className="fixed top-16 left-12 z-10 hidden md:block">
+      <div className="fixed top-24 left-12 z-10 hidden md:block">
         <h2
           ref={headingRef}
-          className="text-4xl font-bold text-black space-y-2 leading-snug"
+          className="text-xl font-bold text-black space-y-2 tracking-tight"
         >
-          <span className="text-brand-main_500 text-6xl">온맘</span>
+          <span className="text-brand-main_500 text-5xl font-extrabold leading-normal">
+            온맘
+          </span>
           <br />
-          <span className="text-slate-900">독거노인 가족 연결</span>
+          <span className="text-slate-800 leading-7">독거노인 가족 연결</span>
           <br />
-          <span className="text-slate-900">AI 그림일기 서비스</span>
+          <span className="text-slate-800 leading-7">AI 그림일기 서비스</span>
         </h2>
 
         {/* 추가 텍스트 */}
         <div
           ref={additionalTextRef}
-          className="mt-8 text-base font-semibold text-gray-800 tracking-tight leading-5"
+          className="mt-12 text-base font-semibold text-gray-800 tracking-tight leading-5"
         >
           <span>가족이 있어도 여전히 외로운 어르신들</span>
           <br />

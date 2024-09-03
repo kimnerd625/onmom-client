@@ -4,33 +4,36 @@ export async function POST(request: Request) {
   try {
     // FormData를 사용하여 파일을 처리합니다.
     const formData = await request.formData();
-    const file = formData.get("file") as Blob;
-    const groupId = formData.get("groupId"); // 추가된 필드
+    const file = formData.get("file") as File;
+    let groupId = formData.get("groupId") as string;
+    let userId = formData.get("userId") as string;
 
+    // 파일이 없을 경우 오류 반환
     if (!file) {
       console.log("No file uploaded");
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
-    // 파일 및 기타 데이터를 로그로 출력하여 확인합니다.
+    // groupId와 userId에서 따옴표 제거
+    groupId = groupId.replace(/"/g, "");
+    userId = userId.replace(/"/g, "");
+
     console.log("Received file:", file);
     console.log("Received groupId:", groupId);
+    console.log("Received userId:", userId);
 
-    // FormData 객체를 새로 생성하고, 파일과 groupId를 추가합니다.
-    const uploadData = new FormData();
-    uploadData.append("audioFile", file);
-    if (groupId) {
-      uploadData.append("groupId", groupId.toString());
-    }
-
-    // 이 시점에서 데이터를 확인한 후 필요에 따라 변경하거나 추가 작업을 수행할 수 있습니다.
-
-    // 다른 서버로 파일을 전송하는 경우:
     const apiUrl = "http://15.165.54.182:8080/diaries/create";
+
+    // 백엔드로 전송할 데이터 준비
+    const formDataToSend = new FormData();
+    formDataToSend.append("audioFile", file, file.name);
+    formDataToSend.append("groupId", groupId);
+    formDataToSend.append("userId", userId);
 
     const response = await fetch(apiUrl, {
       method: "POST",
-      body: uploadData, // FormData 자체를 전송
+      body: formDataToSend,
+      // 'Content-Type'을 명시하지 않습니다.
     });
 
     if (!response.ok) {

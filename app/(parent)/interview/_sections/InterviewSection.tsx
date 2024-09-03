@@ -8,6 +8,8 @@ import VisualizerCanvas from "../_components/VisualizerCanvas";
 import ControlButton from "../_components/ControlButton";
 import AudioPlayer from "../_components/AudioPlayer";
 import QuestionDisplay from "../_components/QuestionDisplay";
+import { getLoginUser } from "@/app/_utils/loginUserInfo";
+import { getGroupId } from "@/app/_utils/groupId";
 
 export default function InterviewSection() {
   const [isRecording, setIsRecording] = useState(false);
@@ -19,6 +21,28 @@ export default function InterviewSection() {
   const audioChunksRef = useRef<Blob[]>([]);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
+
+  const [userId, setUserId] = useState<string | null>(null);
+  const [groupId, setGroupId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loginData = getLoginUser();
+    const gId = getGroupId();
+
+    if (gId !== null) {
+      setGroupId(gId);
+    }
+
+    // JSON.parse 예외 처리 추가
+    if (loginData) {
+      try {
+        const parsedData = JSON.parse(loginData);
+        setUserId(parsedData.userId);
+      } catch (error) {
+        console.error("Failed to parse login data:", error);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (isRecording) {
@@ -59,7 +83,9 @@ export default function InterviewSection() {
                       setCurrentQuestionIndex,
                       setCurrentQuestion,
                       () => stopRecording(setIsRecording, mediaRecorderRef)
-                    )
+                    ),
+                  userId, // userId 전달
+                  groupId // groupId 전달
                 )
         }
       />
