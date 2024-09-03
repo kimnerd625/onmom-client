@@ -82,39 +82,63 @@ npm run build
 ### 📖 Directory
 
 ```
-src
-├── api
-├── assets
-│   ├── Invest
-│   ├── Login
-│   ├── Main
-│   ├── Mypage
-│   ├── Navbar
-│   ├── Signup
-│   ├── bankLogo
-│   ├── icons
-│   ├── images
-│   └── insuranceLogo
-├── components
-│   ├── Button
-│   ├── Card
-│   ├── Navbar
-│   ├── Routing
-│   └── Topbar
-├── fonts
-├── pages
-│   ├── Account
-│   ├── CashWalk
-│   ├── ChatBot
-│   ├── Login
-│   ├── Main
-│   ├── Mypage
-│   │   └── components
-│   ├── Payment
-│   ├── Signup
-│   ├── insurance
-│   └── investPet
-├── routes
-├── store
-└── utils
+📦app
+ ┣ 📂(child)
+ ┃ ┣ 📂album
+ ┃ ┃ ┣ 📂Types
+ ┃ ┃ ┣ 📂_components
+ ┃ ┃ ┃ ┣ 📂Diary
+ ┃ ┃ ┃ ┣ 📂Main
+ ┃ ┃ ┃ ┣ 📂Share
+ ┃ ┃ ┣ 📂_data
+ ┃ ┃ ┣ 📂_utill
+ ┃ ┣ 📂create-group
+ ┃ ┣ 📂groups
+ ┃ ┣ 📂invite-code
+ ┃ ┃ ┣ 📂[inviteCode]
+ ┃ ┃ ┃ ┣ 📂group-join-success
+ ┃ ┃ ┃ ┣ 📂wait-queue
+ ┃ ┃ ┣ 📂_sections
+ ┃ ┣ 📂join-group
+ ┃ ┣ 📂pills
+ ┃ ┃ ┣ 📂_components
+ ┃ ┃ ┣ 📂_sections
+ ┃ ┃ ┣ 📂_utils
+ ┃ ┣ 📂question
+ ┃ ┣ 📂signin
+ ┃ ┃ ┣ 📂_components
+ ┃ ┣ 📂signup
+ ┃ ┃ ┣ 📂_components
+ ┃ ┃ ┣ 📂_utils
+ ┃ ┣ 📂userinfo
+ ┃ ┃ ┣ 📂_components
+ ┃ ┣ 📂(parent)
+ ┃ ┃ ┣ 📂interview
+ ┃ ┃ ┃ ┣ 📂data
+ ┃ ┃ ┃ ┣ 📂_components
+ ┃ ┃ ┃ ┣ 📂_sections
+ ┃ ┃ ┃ ┣ 📂_utils
+ ┣ 📂actions
+ ┣ 📂api
+ ┃ ┣ 📂createGroup
+ ┃ ┣ 📂createInviteCode
+ ┃ ┣ 📂createPillInfo
+ ┃ ┣ 📂deleteUser
+ ┃ ┣ 📂getDiary
+ ┃ ┣ 📂getGroupId
+ ┃ ┣ 📂getGroupInfo
+ ┃ ┣ 📂getMedicationInfo
+ ┃ ┣ 📂getMonthDiary
+ ┃ ┣ 📂getPillInfo
+ ┃ ┣ 📂getUserInfo
+ ┃ ┣ 📂joinGroup
+ ┃ ┣ 📂signin
+ ┃ ┣ 📂signOut
+ ┃ ┣ 📂signup
+ ┃ ┗ 📂uploadInterview
+ ┣ 📂constants
+ ┣ 📂stt
+ ┣ 📂types
+ ┣ 📂_components
+ ┣ 📂_utils
 ```
