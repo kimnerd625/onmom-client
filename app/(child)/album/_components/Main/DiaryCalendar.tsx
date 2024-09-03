@@ -42,7 +42,7 @@ export default function DiaryCalendar({
     selected ? selected.getDate() : new Date().getDate()
   );
   const [userId, setUserId] = useState<number>(0);
-  const [groupId, setGroupId] = useState<string>("");
+  const [groupId, setGroupId] = useState<string>("23");
 
   const fetchData = async (
     year: number,
@@ -86,11 +86,9 @@ export default function DiaryCalendar({
     const LU = getLoginUser();
     if (GID) setGroupId(GID);
     if (LU) setUserId(JSON.parse(LU).userId);
-  }, []);
 
-  useEffect(() => {
     fetchData(selectYear, selectMonth, userId, groupId);
-  }, [selectYear, selectMonth]);
+  }, [selectYear, selectMonth, userId, groupId]);
 
   useEffect(() => {
     if (selected) {

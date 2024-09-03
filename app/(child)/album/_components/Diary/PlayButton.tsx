@@ -38,10 +38,7 @@ export default function PlayButton({
   return (
     <div className="flex relative justify-center w-14 h-14 rounded-full bg-black">
       <audio ref={audioRef} style={{ display: "none" }} controls>
-        <source
-          src="https://onmom-files.s3.ap-northeast-2.amazonaws.com/audio/3/1724767433378.mp3"
-          type="audio/mpeg"
-        />
+        <source src={audioUrl} type="audio/mpeg" />
       </audio>
 
       <div className="absolute"></div>

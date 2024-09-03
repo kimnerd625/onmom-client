@@ -138,7 +138,7 @@ export default function Diary({
           <ShareIcon width={24} height={24}></ShareIcon>
         </button>
         <div
-          className={`ml-1 cursor-pointer group hover:outline hover:outline-blue-600 flex justify-center flex-col items-center relative w-[313px] h-[512px] rounded-[38px] ${getCardColor(
+          className={`ml-1 cursor-pointer group hover:outline hover:outline-brand-main_200 flex justify-center flex-col items-center relative w-[313px] h-[512px] rounded-[38px] ${getCardColor(
             diaryIdx
           )}`}
         >
@@ -148,7 +148,7 @@ export default function Diary({
             imageUrl={diariesData[diaryIdx].imageUrl}
             summaryContent={diariesData[diaryIdx].summaryContent}
           />
-          <div className="bg-white p-2 group:hover:border group-hover:border-t-4 group-hover:border-t-blue-600 absolute -bottom-10 left-1/2 transform -translate-x-1/2 rounded-full">
+          <div className="bg-white p-2 group:hover:border group-hover:border-t-4 group-hover:border-brand-main_200 absolute -bottom-10 left-1/2 transform -translate-x-1/2 rounded-full">
             <PlayButton
               isSwiping={isSwiping}
               isOpenShare={isOpenShare}
@@ -160,7 +160,7 @@ export default function Diary({
 
       <div className="drop-shadow-xl absolute z-20 origin-bottom-right rotate-[10deg]">
         <div
-          className={`cursor-pointer group hover:outline hover:outline-blue-600 flex justify-center flex-col items-center relative w-[313px] h-[512px] rounded-[38px] ${getCardColor(
+          className={`cursor-pointer group hover:outline hover:outline-brand-main_200 flex justify-center flex-col items-center relative w-[313px] h-[512px] rounded-[38px] ${getCardColor(
             (diaryIdx + 1) % 3
           )}`}
         >
@@ -191,7 +191,7 @@ export default function Diary({
       </div>
       <div className="drop-shadow-[4px_-4px_8px_rgba(0,0,0,0.3)] absolute z-10 right-20 top-5 origin-bottom-right rotate-[35deg]">
         <div
-          className={`cursor-pointer group hover:outline hover:outline-blue-600 flex justify-center flex-col items-center relative w-[290px] h-[400px] rounded-[38px] ${getCardColor(
+          className={`cursor-pointer group hover:outline hover:outline-brand-main_200 flex justify-center flex-col items-center relative w-[290px] h-[400px] rounded-[38px] ${getCardColor(
             (diaryIdx + 2) % 3
           )}`}
         ></div>

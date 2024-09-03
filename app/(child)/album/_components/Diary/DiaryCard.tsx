@@ -21,7 +21,7 @@ export default function DiaryCard({
         <Frame />
       </div>
       <div className="relative flex flex-row justify-between h-[40px]">
-        <div>{title}</div>
+        <div>오늘의 일기</div>
         <div>{createdAt}</div>
       </div>
 
@@ -37,8 +37,23 @@ export default function DiaryCard({
         ></Image>
       </div>
 
-      <div className="relative flex flex-col mt-1 select-none">
-        <div className="text-xs leading-[26px]">{summaryContent}</div>
+      <div className="relative flex flex-col mt-1">
+        <div
+          className="text-xs leading-[26px] h-[80px] overflow-hidden p-1"
+          style={{
+            maxHeight: "80px",
+            overflowY: "scroll",
+            scrollbarWidth: "none", // Firefox에서 스크롤바 숨기기
+            msOverflowStyle: "none", // IE에서 스크롤바 숨기기
+          }}
+        >
+          <style jsx>{`
+            div::-webkit-scrollbar {
+              display: none; // Chrome, Safari, Opera에서 스크롤바 숨기기
+            }
+          `}</style>
+          {summaryContent}
+        </div>
       </div>
     </div>
   );

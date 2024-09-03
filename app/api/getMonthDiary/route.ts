@@ -3,7 +3,14 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
-    const groupId = url.searchParams.get("groupId");
+    let groupId = url.searchParams.get("groupId");
+    if (!groupId) {
+      return NextResponse.json(
+        { error: "그룹 ID가 제공되지 않았습니다." },
+        { status: 400 }
+      );
+    }
+    groupId = groupId.replace(/"/g, "");
     const userId = url.searchParams.get("userId");
     const year = url.searchParams.get("year");
     const month = url.searchParams.get("month");
