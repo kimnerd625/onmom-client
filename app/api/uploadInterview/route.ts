@@ -49,7 +49,7 @@ export async function POST(request: Request) {
   } catch (error: any) {
     console.error("Error in API route:", error.message);
     return NextResponse.json(
-      { error: "파일 업로드 중 오류가 발생했습니다: " + error.message },
+      { error: "파일 업로드 중 오류가 발생했습니다: " + error.message + error },
       { status: 500 }
     );
   }

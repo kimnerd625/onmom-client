@@ -3,7 +3,7 @@
 | **🍀 [김지훈](https://github.com/)** | **🍀 [박다희](https://github.com/)** | **🍀 [신성우](https://github.com/)** |
 | :-----------------------------------: | :-----------------------------------: | :---------------------------------: |
 | **FrontEnd Developer**               | **FrontEnd Developer, Designer**       | **FrontEnd Developer**      |
-|  프로젝트 개발 환경 설정<br/> 프로젝트 초기 구조 구축 <br/> | 프로젝트 디자인 작업 <br/> 와이어프레임 작성  |                          |
+|  프로젝트 개발 환경 설정<br/> 프로젝트 초기 구조 구축<br/> 사용자 인증 뷰 <br/> 그림일기 생성 뷰| UI·UX 디자인 작업 <br/> 와이어프레임 작성<br/> 복약정보 뷰<br/> 가족초대 뷰  | 다이어리 뷰<br/> 그림일기 뷰 <br/> 디버깅 및 리팩토링                          |
 
 
 ## 배포 주소
@@ -51,10 +51,10 @@ npx next dev
 배포할 수 있는 정적 파일을 빌드하려면 다음 명령어를 사용하세요:
 
 ```bash
-npm run build
+npm next build
 ```
 
-## Stacks 🐈
+## 🐈 Stacks 
 
 ### Environment
 
@@ -79,7 +79,7 @@ npm run build
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-### 📖 Directory
+## 📖 Directory
 
 ```
 📦app
