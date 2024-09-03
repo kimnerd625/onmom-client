@@ -5,8 +5,8 @@ import InviteCodeContent from "./_sections/InviteCodeContent";
 import KakaoShare from "@/public/icons/icon-kakao-share.svg";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { getGroupId } from "../_utils/groupId";
-import { getLoginUser } from "../_utils/loginUserInfo";
+import { getGroupId } from "../../_utils/groupId";
+import { getLoginUser } from "../../_utils/loginUserInfo";
 import Script from "next/script";
 
 export default function InviteCode() {

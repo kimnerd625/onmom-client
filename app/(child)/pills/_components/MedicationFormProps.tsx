@@ -24,6 +24,7 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
       endDate,
       frequency,
     };
+
     console.log(data);
 
     try {
@@ -37,9 +38,11 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
 
       const result = await response.json();
       console.log("Response:", result);
+
       if (response.ok) {
         toast.success("복약 정보가 성공적으로 등록되었습니다.");
         onSubmit(); // 폼 제출 후 모달 닫기
+        window.location.reload(); // 페이지 새로고침
       } else {
         toast.error(`Error: ${result.message}`);
       }
@@ -61,7 +64,6 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
           required
         />
       </div>
-
       <div className="flex flex-col">
         <label className="font-semibold text-gray-700">시작 날짜</label>
         <input
@@ -72,7 +74,6 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
           required
         />
       </div>
-
       <div className="flex flex-col">
         <label className="font-semibold text-gray-700">종료 날짜</label>
         <input
@@ -83,10 +84,10 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
           required
         />
       </div>
-
       <div className="flex flex-col">
         <label className="font-semibold text-gray-700">
-          복용 빈도 (하루에 몇 번)
+          {" "}
+          복용 빈도 (하루에 몇 번){" "}
         </label>
         <input
           type="number"
@@ -97,7 +98,6 @@ const MedicationForm = ({ userId, groupId, onSubmit }: MedicationFormProps) => {
           required
         />
       </div>
-
       <button
         type="submit"
         className="w-full py-2 bg-brand-main_500 text-white font-semibold rounded-md hover:bg-[#ff5900]"

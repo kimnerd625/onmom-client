@@ -16,7 +16,7 @@ export default function DiaryCard({
   summaryContent,
 }: DiaryCardData) {
   return (
-    <div className="relative w-[270px] h-[380px] p-2 bg-white font-yoonchildfundDaeHan">
+    <div className="relative w-[270px] h-[380px] p-2 bg-white font-yoonchildfundDaeHan select-none">
       <div className="top-[-12px] right-[-10px] absolute">
         <Frame />
       </div>
@@ -25,7 +25,7 @@ export default function DiaryCard({
         <div>{createdAt}</div>
       </div>
 
-      <div className="relative h-[225px] overflow-hidden rounded-lg flex-row justify-between flex ">
+      <div className="relative h-[225px] overflow-hidden rounded-lg flex-row justify-between flex select-none">
         <Image
           src={imageUrl}
           alt="그림일기 이미지"
@@ -37,18 +37,8 @@ export default function DiaryCard({
         ></Image>
       </div>
 
-      <div className="relative flex flex-col mt-1">
-        <div
-          className="text-xs leading-[26px] h-[90px] overflow-hidden p-1"
-          style={{
-            maxHeight: "80px",
-            overflowY: "scroll",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-        >
-          {summaryContent}
-        </div>
+      <div className="relative flex flex-col mt-1 select-none">
+        <div className="text-xs leading-[26px]">{summaryContent}</div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getGroupId } from "@/app/_utils/groupId"; // 그룹 ID를 가져오는 유틸리티
 import { toast } from "sonner";
-import Spinner from "../../../_components/Spinner";
+import Spinner from "../../../../_components/Spinner";
 
 interface User {
   userId: number;

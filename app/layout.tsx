@@ -1,10 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Image from "next/image";
-import { Toaster } from "sonner";
-import IntroText from "./_components/IntroText";
-import ActionCards from "./_components/ActionCards"; // 새로운 컴포넌트 가져오기
 
 const AppleSDGothicNeo = localFont({
   src: [
@@ -69,24 +65,7 @@ export default function RootLayout({
   return (
     <html lang="kr">
       <body className={`${AppleSDGothicNeo.className} bg-[#f7f7f7] relative`}>
-        <Toaster position="top-center" richColors />
-        {/* 배경 이미지 추가 */}
-        <div className="absolute inset-0 -z-10 hidden md:block">
-          <Image
-            src="/images/bg-gradient-2.png" // 이미지 경로 설정
-            alt="Background gradient"
-            layout="fill" // 전체 화면을 채우도록 설정
-            objectFit="contain" // 이미지를 화면에 맞게 조절
-            quality={100} // 이미지 품질 설정 (선택 사항)
-            priority // 페이지 로딩 시 우선 로드
-          />
-        </div>
-        <IntroText />
-        <div className="w-full min-h-screen flex justify-center items-center relative">
-          <div className="w-full md:w-[375px] bg-white shadow-md">
-            {children}
-          </div>
-        </div>
+        {children}
       </body>
     </html>
   );
