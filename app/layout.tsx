@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import Image from "next/image";
 import { Toaster } from "sonner";
 import IntroText from "./_components/IntroText";
+import ActionCards from "./_components/ActionCards"; // 새로운 컴포넌트 가져오기
 
 const AppleSDGothicNeo = localFont({
   src: [
@@ -80,11 +81,8 @@ export default function RootLayout({
             priority // 페이지 로딩 시 우선 로드
           />
         </div>
-        {/* 소개 글 애니메이션 */}
-        <IntroText /> {/* 클라이언트 컴포넌트 사용 */}
-        {/* 모바일 크기로 고정 */}
+        <IntroText />
         <div className="w-full min-h-screen flex justify-center items-center relative">
-          {/* 모바일 화면 고정 크기와 그림자 추가 */}
           <div className="w-full md:w-[375px] bg-white shadow-md">
             {children}
           </div>
