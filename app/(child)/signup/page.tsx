@@ -5,7 +5,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 import SignUpForm from "./_components/SignUpForm";
-import Spinner from "../_components/Spinner";
+import Spinner from "../../_components/Spinner";
 
 export default function SignInPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);

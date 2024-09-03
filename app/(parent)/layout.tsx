@@ -1,55 +1,53 @@
-import "./globals.css";
+import "../globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Image from "next/image";
 import { Toaster } from "sonner";
-import IntroText from "./_components/IntroText";
-import ActionCards from "./_components/ActionCards"; // 새로운 컴포넌트 가져오기
 
 const AppleSDGothicNeo = localFont({
   src: [
     {
-      path: "../public/fonts/AppleSDGothicNeoT.ttf",
+      path: "../../public/fonts/AppleSDGothicNeoT.ttf",
       weight: "900",
       style: "normal",
     },
     {
-      path: "../public/fonts/AppleSDGothicNeoEB.ttf",
+      path: "../../public/fonts/AppleSDGothicNeoEB.ttf",
       weight: "800",
       style: "normal",
     },
     {
-      path: "../public/fonts/AppleSDGothicNeoB.ttf",
+      path: "../../public/fonts/AppleSDGothicNeoB.ttf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../public/fonts/AppleSDGothicNeoSB.ttf",
+      path: "../../public/fonts/AppleSDGothicNeoSB.ttf",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../public/fonts/AppleSDGothicNeoM.ttf",
+      path: "../../public/fonts/AppleSDGothicNeoM.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../public/fonts/AppleSDGothicNeoR.ttf",
+      path: "../../public/fonts/AppleSDGothicNeoR.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/AppleSDGothicNeoL.ttf",
+      path: "../../public/fonts/AppleSDGothicNeoL.ttf",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../public/fonts/AppleSDGothicNeoUL.ttf",
+      path: "../../public/fonts/AppleSDGothicNeoUL.ttf",
       weight: "200",
       style: "normal",
     },
     {
-      path: "../public/fonts/AppleSDGothicNeoH.ttf",
+      path: "../../public/fonts/AppleSDGothicNeoH.ttf",
       weight: "100",
       style: "normal",
     },
@@ -76,14 +74,13 @@ export default function RootLayout({
             src="/images/bg-gradient-2.png" // 이미지 경로 설정
             alt="Background gradient"
             layout="fill" // 전체 화면을 채우도록 설정
-            objectFit="contain" // 이미지를 화면에 맞게 조절
+            style={{ objectFit: "cover" }} // 이미지를 화면에 맞게 조절
             quality={100} // 이미지 품질 설정 (선택 사항)
             priority // 페이지 로딩 시 우선 로드
           />
         </div>
-        <IntroText />
         <div className="w-full min-h-screen flex justify-center items-center relative">
-          <div className="w-full md:w-[375px] bg-white shadow-md">
+          <div className="w-full md:w-[1200px] bg-white shadow-md">
             {children}
           </div>
         </div>
