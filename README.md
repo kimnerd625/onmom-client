@@ -51,10 +51,10 @@ npx next dev
 배포할 수 있는 정적 파일을 빌드하려면 다음 명령어를 사용하세요:
 
 ```bash
-npm run build
+npm next build
 ```
 
-## Stacks 🐈
+## 🐈 Stacks 
 
 ### Environment
 
@@ -79,7 +79,7 @@ npm run build
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-### 📖 Directory
+## 📖 Directory
 
 ```
 📦app
