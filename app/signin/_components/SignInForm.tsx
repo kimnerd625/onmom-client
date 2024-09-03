@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { setLoginUser } from "@/app/_utils/loginUserInfo";
+import { setGroupId } from "@/app/_utils/groupId";
 
 const SignInForm = () => {
   const [email, setEmail] = useState<string>();
@@ -29,10 +30,29 @@ const SignInForm = () => {
 
       const userData = await response.json();
       setLoginUser(userData);
+      const userId = userData.userId;
 
+      const groupIdResponse = await fetch(`/api/getGroupId?userId=${userId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!groupIdResponse.ok) {
+        throw new Error("그룹 아이디를 불러 오는데 실패했습니다.");
+      }
+
+      const groupIdData = await groupIdResponse.json();
+      setGroupId(groupIdData.groupId);
+      const groupId = groupIdData.groupId;
       toast.success("로그인이 성공적으로 이뤄졌습니다!");
       setTimeout(() => {
-        router.push("/create-group");
+        if (groupId == "") {
+          router.push("/create-group");
+        } else {
+          router.push("/pills");
+        }
       }, 1500);
     } catch (error) {
       toast.error("로그인에 실패했습니다.");
