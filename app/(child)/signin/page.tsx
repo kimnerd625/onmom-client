@@ -1,9 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import SignInForm from "./_components/SignInForm";
+import { removeLoginUser } from "@/app/_utils/loginUserInfo";
+import { removeGroupId } from "@/app/_utils/groupId";
 
 export default function SignInPage() {
+  useEffect(() => {
+    removeLoginUser();
+    removeGroupId();
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center select-none overflow-x-hidden overflow-y-hidden">
       <section className="mt-[100px] w-full py-10 px-5">

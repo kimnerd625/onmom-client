@@ -90,6 +90,7 @@ export default function Diary({
 
       setDeg(newDeg);
     },
+    trackMouse: true,
   });
 
   const getCardColor = (idx: number) => {
