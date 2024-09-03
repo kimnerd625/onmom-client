@@ -4,9 +4,9 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { toast } from "sonner";
-import { getLoginUser } from "../_utils/loginUserInfo";
+import { getLoginUser } from "@/app/_utils/loginUserInfo";
 import { useRouter } from "next/navigation";
-import { setGroupId } from "../_utils/groupId";
+import { setGroupId } from "@/app/_utils/groupId";
 
 export default function Group() {
   const [image, setImage] = useState<File | null>(null);
